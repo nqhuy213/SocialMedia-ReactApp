@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'semantic-ui-css/semantic.min.css'
+import { Provider } from 'react-redux';
+import { BrowserRouter} from 'react-router-dom';
+import { history } from "./history";
+import { getToken } from './utils/token';
+
+var userLoggedIn = false
+const admin = getToken('user')
+if(admin){
+  userLoggedIn = true
+}
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <BrowserRouter history={history}>
+      <App userLoggedIn={userLoggedIn}/>
+    </BrowserRouter>,
   document.getElementById('root')
 );
 
