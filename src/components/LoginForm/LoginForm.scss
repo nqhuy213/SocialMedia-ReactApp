@@ -1,0 +1,43 @@
+@import '../../styles/shared.scss';
+
+.form-container{
+  padding: 15px 15px 20px 15px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  box-shadow: $box-shadow-value
+}
+
+.form-entries{
+  margin-bottom: 15px;
+}
+
+.login-entry{
+  height: 50px;
+  border-radius: 6px;
+  font-size: large !important;
+}
+
+.login-button{
+  height: 50px;
+  border-radius: 6px;
+  font-size: large !important;
+  background: $primary-blue !important;
+  color: white !important;
+  
+}
+
+.open-register-button{
+  margin:auto !important;
+  height: 50px;
+  background: $primary-green !important;
+  border-radius: 6px;
+  font-size: large !important;
+  color: white !important;
+
+}
+
+.forget-link{
+  margin: 10px auto 0px auto;
+}

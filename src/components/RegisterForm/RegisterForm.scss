@@ -1,0 +1,40 @@
+@import '../../styles/shared.scss';
+
+.title{
+  margin-bottom: 0;
+}
+.subtitle{
+  color: $dark-gray;
+  font-size: 15px;
+  margin: 0;
+}
+
+.register-entry{
+  margin-bottom: 5px !important;
+  margin-top: 5px !important;
+  &.dob{
+    width: 100% !important;
+    color: $dark-gray;
+  }
+}
+
+.register-button{
+  margin:20px auto 0px auto!important;
+  width: 200px;
+  border-radius: 6px !important;
+  font-size: 17px !important;
+  color: white !important;
+  background-color: $primary-green !important;
+}
+.description-label{
+  color: $dark-gray;
+}
+
+.grid-col{
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+.grid-row{
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
