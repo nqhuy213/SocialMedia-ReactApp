@@ -1,5 +1,17 @@
 @import '../../styles/shared.scss';
 
+
 .news-feed-page{
-  
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-flex-container, .right-flex-container {
+  width: 31%;
+}
+.middle-flex-container{
+  width: 38%;
+}
+.ask-post-box-container{
+  margin-top: 20px;
 }
