@@ -2,7 +2,7 @@ import React from 'react'
 import './LoginForm.scss'
 import { Segment, Form, Button, Divider } from 'semantic-ui-react'
 
-export default function LoginForm() {
+export default function LoginForm({openRegisterForm}) {
   return (
     <Segment className='form-container'>
       <Form className='form-entries'>
@@ -16,7 +16,7 @@ export default function LoginForm() {
       <Button className='login-button' fluid>Log in</Button>
       <a href='#' className='forget-link'>Forget password?</a>
       <Divider/>
-      <Button className='open-register-button'>Create new account</Button>
+      <Button className='open-register-button' onClick={openRegisterForm}>Create new account</Button>
     </Segment>
   )
 }

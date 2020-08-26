@@ -1,8 +1,10 @@
 import React from 'react'
-
-export default function NewsFeedPage() {
+import NavigationBar from '../../components/NavigationBar/NavigationBar'
+import './NewsFeedPage.scss'
+import RegisterForm from '../../components/RegisterForm/RegisterForm'
+export default function NewsFeedPage({props}) {
   return (
-    <div>
+    <div className='news-feed-page'>
       
     </div>
   )

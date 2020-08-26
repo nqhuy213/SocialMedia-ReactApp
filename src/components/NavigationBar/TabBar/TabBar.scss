@@ -1,0 +1,41 @@
+@import '../../../styles/shared.scss';
+
+
+.tab-icon{
+  position: relative !important;
+  background-color: transparent !important;
+  width: 110px;
+  height: 100% !important;
+  margin-left: 3px !important;
+  margin-right: 3px !important;
+  border-radius: 10px !important;
+}
+
+.tab-icon:hover{
+  background-color: rgba(204, 204, 204, 0.2) !important;
+  &.selected{
+    background-color: transparent !important;
+  }
+}
+
+.tabbar-item{
+  position: absolute !important;
+  top: 18px;
+  left: 45px;
+  z-index: -1;
+}
+
+.selected{
+  color: $primary-blue !important;
+}
+
+
+
+.selected-indicator{
+  position: absolute;
+  width: 106px;
+  bottom: -19px;
+  left: 2px;
+  border-top: 3px solid $primary-blue !important;
+  z-index: -1;
+}

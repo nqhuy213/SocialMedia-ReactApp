@@ -1,0 +1,38 @@
+@import '../../styles/shared.scss';
+
+.navbar-container{
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.12);
+  padding-left: 20px ;
+  padding-right: 20px;
+  z-index: 100;
+}
+
+.navbar-item{
+  margin-top: auto;
+  margin-bottom: auto;
+  
+}
+.logo-img{
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+
+
+.tabbar{
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.left-flex, .middle-flex, .right-flex{
+  display: flex;
+  width: 33%;
+}

@@ -24,7 +24,7 @@ export default function RegisterForm() {
               <input placeholder='Password' className='register-entry'/>
             </Grid.Column>
           </Grid.Row>
-          <label for='day' className='description-label'>Date of Birth</label>
+          <label  className='description-label'>Date of Birth</label>
           <Grid.Row columns={3} className='grid-row'>
             <Grid.Column className='grid-col'>
               <select name='day' placeholder='Day' className='register-entry dob'>
