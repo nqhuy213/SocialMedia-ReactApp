@@ -3,6 +3,7 @@ import './NewsFeedPage.scss'
 import AskPostBox from '../../components/AskPostBox/AskPostBox'
 import { Modal } from 'semantic-ui-react'
 import PostForm from '../../components/PostForm/PostForm'
+import PostItem from '../../components/PostItem/PostItem'
 
 export default function NewsFeedPage({props}) {
   const [openPostForm, setOpenPostForm] = useState(false)
@@ -15,6 +16,12 @@ export default function NewsFeedPage({props}) {
         <div className='middle-flex-container'>
           <div className='ask-post-box-container'>
             <AskPostBox openPostForm={() => setOpenPostForm(true)}/>
+          </div>
+
+          <div className='post-list-container'>
+            <div className='post-item-container'>
+              <PostItem/>
+            </div>
           </div>
         </div>
         <div className='left-flex-container'>

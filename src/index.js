@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter} from 'react-router-dom';
 import { history } from "./history";
 import { getToken } from './utils/token';
-
+import './index.scss'
 var userLoggedIn = false
 const admin = getToken('user')
 if(admin){

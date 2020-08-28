@@ -7,9 +7,6 @@
   box-shadow: $box-shadow-value;
 }
 
-.avatar-container{
-  display: flex;
-}
 
 .user-name-label{
   font-weight: 900;
@@ -22,11 +19,15 @@
   font-size: 25px !important;
   height: 200px !important;
   padding: 0 !important;
-  padding-top: 20px !important;
+  margin-top: 20px !important;
 }
 
 .post-button{
   margin-top: 30px !important;
   background-color: $primary-blue !important;
   color: white !important;
+}
+
+.post-button:hover{
+  background-color: $primary-blue-hover  !important;
 }
