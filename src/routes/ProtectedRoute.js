@@ -6,7 +6,7 @@ export default function ProtectedRoute({ component: Component, auth, redir, ...r
 
   return (
       <Route {...rest} render={(props) => (
-        auth === false
+        auth === true
           ? <Component page={rest.path.slice(1)} />
           : <Redirect to={redir} />
       )} />

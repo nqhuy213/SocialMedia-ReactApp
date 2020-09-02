@@ -10,7 +10,8 @@ import { getToken } from './utils/token';
 import './index.scss'
 import { store } from './redux/reduxStore';
 var userLoggedIn = false
-const admin = getToken('user')
+
+const admin = getToken('token')
 if(admin){
   userLoggedIn = true
 }

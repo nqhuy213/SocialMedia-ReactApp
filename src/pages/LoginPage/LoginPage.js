@@ -11,13 +11,16 @@ export default function LoginPage() {
     }
   )
 
+  const closeRegisterForm = () => {
+    setState({...state, registerForm:false})
+  }
   return (
     <Fragment>
       <div className='login-form-container'>
         <LoginForm openRegisterForm={() => setState({...state, registerForm: true})}/>
       </div>
-      <Modal size='mini' basic dimmer='inverted' open={state.registerForm} onClose={() => setState({...state, registerForm:false})}>
-          <RegisterForm/>
+      <Modal size='mini' basic dimmer='inverted' open={state.registerForm} onClose={closeRegisterForm }>
+          <RegisterForm closeRegisterForm={closeRegisterForm}/>
       </Modal>
     </Fragment>
     
