@@ -16,6 +16,15 @@ function fetchNewsFeedSucess(data) {
   }
 }
 
+function fetchNewsFeedMoreSuccess(data) {
+  return {
+    type: types.FETCH_NEWSFEED_MORE_SUCCESS,
+    payload: {
+      result: data
+    }
+  }
+}
+
 function fetchNewsFeedFailure(error) {
   return {
     type: types.FETCH_NEWSFEED_FAILURE,
@@ -31,6 +40,17 @@ export function fetchNewsFeed(){
         dispatch(fetchNewsFeedSucess(data))
       }
     ).catch(error => {
+      return dispatch(fetchNewsFeedFailure(error))
+    })
+  }
+}
+
+export function fetchNewsFeedMore(params) {
+  return dispatch => {
+    dispatch(fetchNewsFeedBegin())
+    return getPosts(params).then(data => {
+      dispatch(fetchNewsFeedMoreSuccess(data))
+    }).catch(error => {
       return dispatch(fetchNewsFeedFailure(error))
     })
   }

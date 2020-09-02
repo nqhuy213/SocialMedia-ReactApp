@@ -15,7 +15,10 @@ const initialState = {
 export default function NewsFeed(state = initialState, action = {}){
   switch (action.type){
     case types.FETCH_NEWSFEED_BEGIN:
-       return initialState
+       return {
+         ...state,
+         loading: true
+       }
 
     case types.FETCH_NEWSFEED_SUCCESS:
       return {
@@ -29,12 +32,25 @@ export default function NewsFeed(state = initialState, action = {}){
           }
         }
       }
+    case types.FETCH_NEWSFEED_MORE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data:{
+          ...state.data,
+          posts:{
+            items: [...state.data.posts.items, ...action.payload.result],
+            nextCount: state.data.state.nextCount++,
+          }
+        }
+      }
     case types.FETCH_NEWSFEED_FAILURE:
       return{
         ...initialState,
+        loading: false,
         error: action.payload.error
       }
     
-      default: return state
+    default: return state
   }
 }

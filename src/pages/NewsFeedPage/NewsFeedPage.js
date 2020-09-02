@@ -5,8 +5,10 @@ import { Modal } from 'semantic-ui-react'
 import PostForm from '../../components/PostForm/PostForm'
 import PostItem from '../../components/PostItem/PostItem'
 import PostItemList from '../../components/PostItemList/PostItemList'
+import { useSelector } from 'react-redux'
 
 export default function NewsFeedPage({props}) {
+  const newsFeedLoading = useSelector(state => state.NewsFeed.loading)
   const [openPostForm, setOpenPostForm] = useState(false)
   return (
     <Fragment>

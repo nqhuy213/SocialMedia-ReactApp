@@ -1,7 +1,10 @@
 @import '../../styles/shared.scss';
 
 .navbar-container{
-  position: absolute;
+  position: fixed !important;
+  position: -webkit-fixed; /* Safari */
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   top: 0;
@@ -13,6 +16,7 @@
   padding-left: 20px ;
   padding-right: 20px;
   z-index: 100;
+  resize: none !important;
 }
 
 .navbar-item{
@@ -35,4 +39,9 @@
 .left-flex, .middle-flex, .right-flex{
   display: flex;
   width: 33%;
+}
+
+.middle-flex{
+  display: flex;
+  justify-content:  space-between;
 }
