@@ -8,6 +8,7 @@ import { BrowserRouter} from 'react-router-dom';
 import { history } from "./history";
 import { getToken } from './utils/token';
 import './index.scss'
+import { store } from './redux/reduxStore';
 var userLoggedIn = false
 const admin = getToken('user')
 if(admin){
@@ -16,9 +17,11 @@ if(admin){
 
 
 ReactDOM.render(
+  <Provider store={store}>
     <BrowserRouter history={history}>
       <App userLoggedIn={userLoggedIn}/>
-    </BrowserRouter>,
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 

@@ -1,5 +1,10 @@
 @import '../../styles/shared.scss';
 
+.post-comment-number:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .post-item-wrapper{
   padding-top: 6px !important;
   padding-bottom: 0px !important;
@@ -25,7 +30,6 @@
 .post-action-container{
   margin-top: 6px;
   border-top: 1px solid #c6c6c7;
-  border-bottom: 1px solid #c6c6c7;
 }
 
 .post-action-wrapper{
@@ -42,6 +46,12 @@
   background-color: $gray-hover !important;
 }
 
+.post-image-wrapper{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  min-width: calc(100% + 30px) !important;// twice the value of the parent's padding
+  margin-left: -15px;
+}
 .comment-item-container{
   margin-top: 10px;
   margin-bottom: 10px;
@@ -76,5 +86,6 @@
 }
 
 .comment-section-container{
+  border-top: 1px solid #c6c6c7;
   resize: vertical !important;
 }

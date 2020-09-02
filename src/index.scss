@@ -1,4 +1,10 @@
+@import './styles/shared.scss';
 * {
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }
 
+body{
+  background-color: $page-background-color;
+  background-size: cover;
+  overflow-y: overlay;
+}

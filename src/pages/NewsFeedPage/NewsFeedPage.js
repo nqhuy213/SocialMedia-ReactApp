@@ -4,6 +4,7 @@ import AskPostBox from '../../components/AskPostBox/AskPostBox'
 import { Modal } from 'semantic-ui-react'
 import PostForm from '../../components/PostForm/PostForm'
 import PostItem from '../../components/PostItem/PostItem'
+import PostItemList from '../../components/PostItemList/PostItemList'
 
 export default function NewsFeedPage({props}) {
   const [openPostForm, setOpenPostForm] = useState(false)
@@ -11,17 +12,13 @@ export default function NewsFeedPage({props}) {
     <Fragment>
       <div className='page-container news-feed-page'>
         <div className='left-flex-container'>
-
         </div>
         <div className='middle-flex-container'>
           <div className='ask-post-box-container'>
             <AskPostBox openPostForm={() => setOpenPostForm(true)}/>
           </div>
-
           <div className='post-list-container'>
-            <div className='post-item-container'>
-              <PostItem/>
-            </div>
+            <PostItemList/>
           </div>
         </div>
         <div className='left-flex-container'>
