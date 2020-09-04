@@ -1,30 +1,23 @@
 import React, { useRef, useState } from 'react'
 import './PostItem.scss'
-import { Segment, Image, Icon, Divider, Button, Input, TextArea, Form } from 'semantic-ui-react'
+import { Segment, Image, Icon, Button} from 'semantic-ui-react'
 import AvatarContainer from '../AvatarContainer/AvatarContainer'
 import CommentItem from '../CommentItem/CommentItem'
 import TextareaAutosize from 'react-textarea-autosize'
-import { likePost } from '../../api/post'
-import useLike from '../PostItem/_useLike'
 import { getUserId } from '../../utils/user'
 import { initialSocket } from '../../socket/socket'
 import { generateRoom } from '../../socket/rooms'
+import usePost from './_usePost'
 
-export default function PostItem({post}) {
+export default function PostItem({post: currentPost}) {
   /**States Section */
- 
-  const postId = post._id
-  const [showComment, setShowComment] = useState(false)
-  const [isLiked, setIsLiked] = useState(post.isLiked)
-  const [postLikes, setLikes] = useState(post.likes)
 
-  
-  
   var socketRef = useRef()
   var commentFormRef = useRef(null)
-  var {likes, sendLike} = useLike(socketRef, postLikes, postId)
-  
+  var {post, sendLike} = usePost(socketRef, currentPost)
+  const [showComment, setShowComment] = useState(false)
 
+  
   const onEnterPressed = (e) => {
     if(e.keyCode === 13 && e.shiftKey === false){
       e.preventDefault()
@@ -33,11 +26,11 @@ export default function PostItem({post}) {
   }
 
   const handleLike = async (e) => {
+    const postId = post._id
     const userId = getUserId()
-    const room = generateRoom([userId, postId])
+    const room = generateRoom([userId])
     socketRef.current = initialSocket(room)
     sendLike({userId, postId, room})
-    setIsLiked(!isLiked)
   }
 
   
@@ -55,14 +48,14 @@ export default function PostItem({post}) {
       <div className='post-like-number'>
         <div id='post-like-label'>
           <Icon name='like' size='small' color='red'/>
-          <span>{likes.length}</span>
+          <span>{post.likes.length}</span>
         </div>
         <span className='post-comment-number' onClick={() => {setShowComment(!showComment)}}>{post.comments.length} comments</span>
       </div>
       
       <div className='post-action-container'>
         <div className='post-action-wrapper'>
-          <Button className={isLiked ? 'post-action-button liked' : 'post-action-button'} fluid onClick={handleLike}>Like</Button>
+          <Button className={post.isLiked ? 'post-action-button liked' : 'post-action-button'} fluid onClick={handleLike}>Like</Button>
           <Button className='post-action-button' fluid onClick={() => {setShowComment(!showComment)}}>Comment</Button>
         </div>
       </div>

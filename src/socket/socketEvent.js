@@ -1,6 +1,7 @@
-const socketMessage = {
+const socketEvent = {
   join: 'join',
   sendLike: 'like-sent',
-  updateLike: 'update-like'
+  updatePost: 'update-post',
+  sendPost: 'send-post'
 }
-module.exports = socketMessage
+export default socketEvent

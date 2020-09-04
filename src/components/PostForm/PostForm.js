@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import {useDispatch} from 'react-redux'
 import './PostForm.scss'
 import { Segment, Divider, Image, Form, TextArea, Button } from 'semantic-ui-react'
 import AvatarContainer from '../AvatarContainer/AvatarContainer'
 import { postPost } from '../../api/post'
-export default function PostForm() {
-
+import { getUserId } from '../../utils/user'
+import { initialSocket } from '../../socket/socket'
+import socketEvent from '../../socket/socketEvent'
+import { addNewPost } from '../../redux/actions/post'
+export default function PostForm({closePostForm}) {
+  const dispatch = useDispatch()
   const [postDescription, setPostDescription] = useState('')
-
   const handleOnChange = (e) => {
     setPostDescription(e.target.value)
   }
@@ -14,7 +18,8 @@ export default function PostForm() {
   const handleOnSubmit = async () => {
     const result = await postPost({description: postDescription})
     if(result.success) {
-      window.location.reload()
+      dispatch(addNewPost(result.data))
+      closePostForm()
     }else{
       // TODO: handle failure
     }

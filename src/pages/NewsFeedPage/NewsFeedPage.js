@@ -9,17 +9,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchNewsFeed } from '../../redux/actions/post'
 
 export default function NewsFeedPage({props}) {
-  const pageLoading = useSelector(state => state.NewsFeed.loading)
-  const nextCount = useSelector(state => state.NewsFeed.data.posts.nextCount)
-  const postItems = useSelector(state => state.NewsFeed.data.posts.items)
+
   const [openPostForm, setOpenPostForm] = useState(false)
-  const dispatch = useDispatch()
+
 
   useEffect(() => {
-    const params = {
-      nextCount
-    }
-    dispatch(fetchNewsFeed())
+
+
   }, [])
 
   return (
@@ -39,8 +35,8 @@ export default function NewsFeedPage({props}) {
 
         </div>
       </div>
-      <Modal basic size='tiny' dimmer='inverted' open={openPostForm} onClose={() => setOpenPostForm(false)}>
-        <PostForm/>
+      <Modal className='post-form-modal' basic size='tiny' dimmer='inverted' open={openPostForm} onClose={() => setOpenPostForm(false)}>
+        <PostForm closePostForm={() => {setOpenPostForm(false)}}/>
       </Modal>
     </Fragment>
     

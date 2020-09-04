@@ -32,6 +32,13 @@ function fetchNewsFeedFailure(error) {
   }
 }
 
+function addNewPostSuccess(post){
+  return{
+    type: types.ADD_NEW_POST,
+    payload: {post}
+  }
+}
+
 export function fetchNewsFeed(){
   return dispatch => {
     dispatch(fetchNewsFeedBegin())
@@ -56,19 +63,8 @@ export function fetchNewsFeedMore(params) {
   }
 }
 
-function likePostSuccess(postId) {
-  return {
-    type: types.LIKE_POST,
-    payload: {
-      postId
-    }
-  }
-}
-
-export function likePostDispatch(postId) {
+export function addNewPost(post) {
   return dispatch => {
-    return likePost({postId}).then(() => {
-      dispatch(likePostSuccess(postId))
-    })
+    return dispatch(addNewPostSuccess(post))
   }
 }
