@@ -1,5 +1,5 @@
 import * as types from '../types'
-import { getPosts, likePost } from '../../api/post'
+import { getPosts, likePost, getPostComments } from '../../api/post'
 
 function fetchNewsFeedBegin() {
   return {
@@ -39,6 +39,13 @@ function addNewPostSuccess(post){
   }
 }
 
+function fetchCommentsSuccess({postId,comments}){
+  return{
+    type: types.FETCH_COMMENTS_SUCCESS,
+    payload: {postId, comments}
+  }
+}
+
 export function fetchNewsFeed(){
   return dispatch => {
     dispatch(fetchNewsFeedBegin())
@@ -66,5 +73,13 @@ export function fetchNewsFeedMore(params) {
 export function addNewPost(post) {
   return dispatch => {
     return dispatch(addNewPostSuccess(post))
+  }
+}
+
+export function fetchComments(params) {
+  return dispatch => {
+    return getPostComments(params).then(data => {
+      dispatch(fetchCommentsSuccess({postId: params.postId, comments: data}))
+    })
   }
 }
