@@ -1,5 +1,5 @@
 import * as types from '../types'
-import { getPosts } from '../../api/post'
+import { getPosts, likePost } from '../../api/post'
 
 function fetchNewsFeedBegin() {
   return {
@@ -52,6 +52,23 @@ export function fetchNewsFeedMore(params) {
       dispatch(fetchNewsFeedMoreSuccess(data))
     }).catch(error => {
       return dispatch(fetchNewsFeedFailure(error))
+    })
+  }
+}
+
+function likePostSuccess(postId) {
+  return {
+    type: types.LIKE_POST,
+    payload: {
+      postId
+    }
+  }
+}
+
+export function likePostDispatch(postId) {
+  return dispatch => {
+    return likePost({postId}).then(() => {
+      dispatch(likePostSuccess(postId))
     })
   }
 }

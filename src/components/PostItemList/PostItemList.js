@@ -1,18 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './PostItemList.scss';
 import PostItem from '../PostItem/PostItem';
-export default function PostItemList({posts, ...props}) {
- return (
-   <div className='post-list-wrapper'>
-      <div className='post-item-container'>
-        <PostItem imageSrc='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'/>
-      </div>
-      <div className='post-item-container'>
-        <PostItem />
-      </div>
-      <div className='post-item-container'>
-        <PostItem/>
-      </div>
-   </div>
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchNewsFeed } from '../../redux/actions/post'
+
+export default function PostItemList() {
+  const postLoading = useSelector(state => state.NewsFeed.loading)
+  const nextCount = useSelector(state => state.NewsFeed.data.posts.nextCount)
+  const postItems = useSelector(state => state.NewsFeed.data.posts.items)
+  
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const params = {
+      nextCount
+    }
+    dispatch(fetchNewsFeed())
+  }, [])
+
+  const itemsList = postItems.map((post) =>
+    <div key={post._id} className='post-item-container'>
+      <PostItem post={post}/>
+    </div>
+  );
+
+  return (
+    <div className='post-list-wrapper'>
+      {itemsList}
+    </div>
  )
 }

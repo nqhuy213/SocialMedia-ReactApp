@@ -50,7 +50,10 @@ export default function NewsFeed(state = initialState, action = {}){
         loading: false,
         error: action.payload.error
       }
-    
+    case types.LIKE_POST:
+      return{
+        
+      }
     default: return state
   }
 }

@@ -41,11 +41,17 @@
 .post-action-button{
   font-size: 15px !important;
   background-color: transparent !important;
+  &.liked{
+    color: $primary-blue !important
+  }
 }
+
 .post-action-button:hover{
   background-color: $gray-hover !important;
 }
-
+.post-action-button:focus{
+  text-decoration:none !important;
+}
 .post-image-wrapper{
   margin-top: 20px;
   margin-bottom: 20px;
