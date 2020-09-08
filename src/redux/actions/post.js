@@ -46,6 +46,12 @@ function fetchCommentsSuccess({postId,comments}){
   }
 }
 
+function updatePostSuccess(post) {
+  return{
+    type: types.UPDATE_POST_SUCCESS,
+    payload: {post}
+  }
+}
 export function fetchNewsFeed(){
   return dispatch => {
     dispatch(fetchNewsFeedBegin())
@@ -81,5 +87,11 @@ export function fetchComments(params) {
     return getPostComments(params).then(data => {
       dispatch(fetchCommentsSuccess({postId: params.postId, comments: data}))
     })
+  }
+}
+
+export function updatePost(post) {
+  return dispatch => {
+    dispatch(updatePostSuccess(post))
   }
 }

@@ -12,9 +12,7 @@ import usePost from './_usePost';
 export default function PostItem({post: currentPost}) {
   /**States Section */
   const [commentText, setCommentText] = useState('');
-  var socketRef = useRef();
-  var commentFormRef = useRef(null);
-  var {post, getComments, sendLike, sendComment} = usePost(socketRef, currentPost);
+  var {post, getComments, sendLike, sendComment} = usePost(currentPost);
   const [showComment, setShowComment] = useState(false);
 
   const onEnterPressed = (e) => {
@@ -25,22 +23,18 @@ export default function PostItem({post: currentPost}) {
     }
   };
 
-
-
   const handleLike = async (e) => {
     const postId = post._id;
     const userId = getUserId();
     const room = generateRoom([userId]);
-    socketRef.current = initialSocket(room);
     sendLike({userId, postId, room});
   };
 
   const handleComment = (e) => {
-    const postBy = post._id
+    const postId = post._id
     const userId = getUserId()
     const room = generateRoom([userId])
-    socketRef.current = initialSocket(room)
-    sendComment({postBy, userId, text: commentText})
+    sendComment({userId, postId, text: commentText})
   }
 
   const handleShowComment = (e) => {
@@ -51,6 +45,12 @@ export default function PostItem({post: currentPost}) {
     }
   } 
 
+  const commentList = post.comments.map(cmt => {
+    return (
+      <div key={cmt._id} className="comment-item-container">
+        <CommentItem commentId={cmt._id}/>
+      </div>)
+  })
   return (
     <Segment className="post-item-wrapper">
       <AvatarContainer
@@ -68,9 +68,7 @@ export default function PostItem({post: currentPost}) {
         </div>
         <span
           className="post-comment-number"
-          onClick={() => {
-            setShowComment(!showComment);
-          }}
+          onClick={handleShowComment}
         >
           {post.comments.length} comments
         </span>
@@ -98,15 +96,7 @@ export default function PostItem({post: currentPost}) {
       </div>
       {showComment ? (
         <div className="comment-section-container">
-          <div className="comment-item-container">
-            <CommentItem description="He heard the loud impact before he ever saw the result. It had been so loud that it had actually made him jump back in his seat. As soon as he recovered from the surprise, he saw the crack in the windshield. It seemed to be an analogy of the current condition of his life." />
-          </div>
-          <div className="comment-item-container">
-            <CommentItem description="alo aloaloaloaloaloaloaloalaoalo" />
-          </div>
-          <div className="comment-item-container">
-            <CommentItem description="alo aloaloaloaloaloaloaloalaoalo" />
-          </div>
+          {commentList}
           <div className="comment-form-container">
             <TextareaAutosize
               className="comment-input"

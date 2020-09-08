@@ -67,7 +67,13 @@ export default function NewsFeed(state = initialState, action = {}){
       var index = finalState.data.posts.items.findIndex(p => p._id === action.payload.postId)
       finalState.data.posts.items[index].comments = action.payload.comments
       return finalState
-      
+    
+    case types.UPDATE_POST_SUCCESS:
+      var finalState = state
+      var index = finalState.data.posts.items.findIndex(p => p._id === action.payload.post._id)
+      finalState.data.posts.items[index] = action.payload.post
+      return finalState
+
     default: return state
   }
 }
