@@ -10,3 +10,9 @@ export const FETCH_NEWSFEED_MORE_SUCCESS = 'FETCH_NEWSFEED_MORE_SUCCESS'
 export const ADD_NEW_POST = 'ADD_NEW_POST'
 
 
+/**Socket actions */
+export const OPEN_NEW_SOCKET = 'OPEN_NEW_SOCKET'
+export const CLOSE_SOCKET = 'CLOSE_SOCKET'
+
+/**Authentication actions */
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'

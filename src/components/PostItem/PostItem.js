@@ -1,19 +1,19 @@
-import React, {useRef, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './PostItem.scss';
 import {Segment, Image, Icon, Button} from 'semantic-ui-react';
 import AvatarContainer from '../AvatarContainer/AvatarContainer';
 import CommentItem from '../CommentItem/CommentItem';
 import TextareaAutosize from 'react-textarea-autosize';
-import {getUserId} from '../../utils/user';
-import {initialSocket} from '../../socket/socket';
-import {generateRoom} from '../../socket/rooms';
-import usePost from './_usePost';
+import PropTypes from 'prop-types'
+import { getUserId } from '../../utils/user';
+import { IsLiked } from '../../utils/attachIsLiked';
 
-export default function PostItem({post: currentPost}) {
+export default function PostItem(props) {
+  const {post, updateLike} = props
   /**States Section */
   const [commentText, setCommentText] = useState('');
-  var {post, getComments, sendLike, sendComment} = usePost(currentPost);
-  const [showComment, setShowComment] = useState(false);
+  const [showComment, setShowComment] = useState(post.comments.length == 0 ? true : false);
+
 
   const onEnterPressed = (e) => {
     if (e.keyCode === 13 && e.shiftKey === false) {
@@ -24,33 +24,25 @@ export default function PostItem({post: currentPost}) {
   };
 
   const handleLike = async (e) => {
-    const postId = post._id;
-    const userId = getUserId();
-    const room = generateRoom([userId]);
-    sendLike({userId, postId, room});
+    updateLike(getUserId(), post._id)
   };
 
   const handleComment = (e) => {
-    const postId = post._id
-    const userId = getUserId()
-    const room = generateRoom([userId])
-    sendComment({userId, postId, text: commentText})
+    
   }
 
   const handleShowComment = (e) => {
     setShowComment(!showComment)
-    if(!showComment){
-      /**Get Comment here */
-      getComments()
-    }
   } 
 
   const commentList = post.comments.map(cmt => {
     return (
       <div key={cmt._id} className="comment-item-container">
-        <CommentItem commentId={cmt._id}/>
+        <CommentItem comment={cmt} postId={post._id}/>
       </div>)
   })
+
+
   return (
     <Segment className="post-item-wrapper">
       <AvatarContainer
@@ -78,7 +70,7 @@ export default function PostItem({post: currentPost}) {
         <div className="post-action-wrapper">
           <Button
             className={
-              post.isLiked ? 'post-action-button liked' : 'post-action-button'
+              IsLiked(post) ? 'post-action-button liked' : 'post-action-button'
             }
             fluid
             onClick={handleLike}
@@ -111,3 +103,8 @@ export default function PostItem({post: currentPost}) {
     </Segment>
   );
 }
+
+PostItem.propTypes = {
+  post: PropTypes.object.isRequired,
+  updateLike: PropTypes.func,
+};

@@ -1,7 +1,9 @@
-export const attachIsLiked = (post, userId) => {
+import { getUserId } from "./user"
+
+export const IsLiked = (post, userId = getUserId()) => {
   let likeList = post.likes.map(l => {
       return l.likedBy.toString()
   })
-  post.isLiked = likeList.includes(userId)
-  return post
+  return likeList.includes(userId)
+  
 }

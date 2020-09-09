@@ -3,6 +3,7 @@ const socketEvent = {
   sendLike: 'like-sent',
   updatePost: 'update-post',
   sendPost: 'send-post',
-  sendComment: 'comment-sent'
+  sendComment: 'comment-sent',
+  sendLikeComment: 'send-like-comment',
 }
 export default socketEvent

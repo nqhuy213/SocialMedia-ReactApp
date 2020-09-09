@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Fragment} from 'react'
-import LoginForm from '../../components/LoginForm/LoginForm'
-import RegisterForm from '../../components/RegisterForm/RegisterForm'
+import LoginForm from './LoginForm/LoginForm'
+import RegisterForm from './RegisterForm/RegisterForm'
 import { Modal } from 'semantic-ui-react'
 
 export default function LoginPage() {
@@ -14,6 +14,7 @@ export default function LoginPage() {
   const closeRegisterForm = () => {
     setState({...state, registerForm:false})
   }
+  
   return (
     <Fragment>
       <div className='login-form-container'>

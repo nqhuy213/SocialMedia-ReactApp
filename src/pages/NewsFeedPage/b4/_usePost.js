@@ -1,11 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react';
-import socketMessage from '../../socket/socketEvent';
-import { initialSocket } from '../../socket/socket';
-import { generateRoom } from '../../socket/rooms';
-import {fetchNewsFeed, fetchComments, updatePost} from '../../redux/actions/post'
+import socketMessage from '../../../socket/socketEvent';
+import { initialSocket } from '../../../socket/socket';
+import { generateRoom } from '../../../socket/rooms';
+import {fetchNewsFeed, fetchComments, updatePost} from '../../../redux/actions/post'
 import {useDispatch, useSelector} from 'react-redux'
-import { getUserId } from '../../utils/user';
-import { attachIsLiked } from '../../utils/attachIsLiked';
+import { getUserId } from '../../../utils/user';
+import { attachIsLiked } from '../../../utils/attachIsLiked';
 
 export default function usePost(currentPost) {
   const userSocketRef = useRef()
@@ -15,6 +15,7 @@ export default function usePost(currentPost) {
     p = attachIsLiked(p, getUserId())
     return p
   })
+
   const postSocketRef = useRef()
   const dispatch = useDispatch()
   
@@ -27,14 +28,10 @@ export default function usePost(currentPost) {
       dispatch(updatePost(data))
       if(userSocketRef.current){userSocketRef.current.disconnect()}
     })
-
     return () => {
       postSocketRef.current.disconnect()
     }
   }, []);
-
-  const getComments = () => {
-  }
 
   const sendLike = (data) => {
     //To server
@@ -49,5 +46,5 @@ export default function usePost(currentPost) {
     userSocketRef.current = initialSocket(room)
     userSocketRef.current.emit(socketMessage.sendComment, data)
   }
-  return {post, getComments, sendLike, sendComment};
+  return {post, sendLike, sendComment};
 }

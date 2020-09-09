@@ -69,10 +69,16 @@ export default function NewsFeed(state = initialState, action = {}){
       return finalState
     
     case types.UPDATE_POST_SUCCESS:
-      var finalState = state
-      var index = finalState.data.posts.items.findIndex(p => p._id === action.payload.post._id)
-      finalState.data.posts.items[index] = action.payload.post
-      return finalState
+      return {
+        ...state,
+        data:{
+          ...state.data,
+          posts: {
+            ...state.data.posts,
+            items: [...state.data.posts.items.filter(p => p._id !== action.payload.post._id), action.payload.post]
+          }
+        }
+      }
 
     default: return state
   }

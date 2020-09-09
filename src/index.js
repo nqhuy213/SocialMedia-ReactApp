@@ -4,7 +4,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css'
 import { Provider } from 'react-redux';
-import { BrowserRouter} from 'react-router-dom';
+import { BrowserRouter, Router} from 'react-router-dom';
 import { history } from "./history";
 import { getToken } from './utils/token';
 import './index.scss'
@@ -19,9 +19,9 @@ if(admin){
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter history={history}>
+    <Router history={history}>
       <App userLoggedIn={userLoggedIn}/>
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

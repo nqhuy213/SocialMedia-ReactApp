@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './RegisterForm.scss'
 import { Segment, Divider, Grid, Form, GridColumn, Select, Radio, Button } from 'semantic-ui-react'
-import { register } from '../../api/auth'
+import { register } from '../../../api/auth'
 
 export default function RegisterForm({closeRegisterForm}) {
   const [registerEntries, setRegisterEntries] = useState({

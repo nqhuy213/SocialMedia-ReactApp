@@ -1,16 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './PostItemList.scss';
 import PostItem from '../PostItem/PostItem';
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchNewsFeed } from '../../redux/actions/post'
-import usePostList from './_usePostList';
+import PropTypes from 'prop-types'
 
-export default function PostItemList() {
-  const {postItems, nextCount, postLoading} = usePostList()
+function PostItemList(props) {
+  const {items, onLikePost} = props
 
-  const itemsList = postItems.map((post) =>
+  const itemsList = items.map((post) =>
     <div key={post._id} className='post-item-container'>
-      <PostItem post={post}/>
+      <PostItem post={post} updateLike={onLikePost}/>
     </div>
   );
   return (
@@ -19,3 +17,10 @@ export default function PostItemList() {
     </div>
  )
 }
+
+PostItemList.propTypes = {
+  items: PropTypes.array.isRequired,
+  onLikePost: PropTypes.func,
+};
+
+export default PostItemList

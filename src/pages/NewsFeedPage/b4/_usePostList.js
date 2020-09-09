@@ -1,8 +1,8 @@
 import React, {useEffect, useState, useRef} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { fetchNewsFeed } from '../../redux/actions/post'
-import { initialSocket } from '../../socket/socket'
-import { getUserId } from '../../utils/user'
+import { fetchNewsFeed } from '../../../redux/actions/post'
+import { initialSocket } from '../../../socket/socket'
+import { getUserId } from '../../../utils/user'
 
 export default function usePostList() {
   const postLoading = useSelector(state => state.NewsFeed.loading)
