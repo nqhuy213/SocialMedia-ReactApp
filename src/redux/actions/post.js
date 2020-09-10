@@ -82,14 +82,6 @@ export function addNewPost(post) {
   }
 }
 
-export function fetchComments(params) {
-  return dispatch => {
-    return getPostComments(params).then(data => {
-      dispatch(fetchCommentsSuccess({postId: params.postId, comments: data}))
-    })
-  }
-}
-
 export function updatePost(post) {
   return dispatch => {
     dispatch(updatePostSuccess(post))

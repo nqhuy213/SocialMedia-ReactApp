@@ -1,11 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import NavigationBar from '../components/NavigationBar/NavigationBar'
-import NewsFeedPage from './NewsFeedPage/NewsFeedPage'
+import NavigationBar from './NavigationBar/NavigationBar'
+import NewsFeedPage from '../NewsFeedPage/NewsFeedPage'
 import './NavigationPage.scss'
-import WatchPage from './WatchPage/WatchPage'
-import { getUserId } from '../utils/user'
-import { openNewSocket } from '../redux/actions/socket'
+import WatchPage from '../WatchPage/WatchPage'
+import { getUserId } from '../../utils/user'
 
 export default function NavigationPage({page}) {
 

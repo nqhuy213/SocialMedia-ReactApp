@@ -1,13 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PublicRoute from './routes/PublicRoute';
 import ProtectedRoute from './routes/ProtectedRoute'
 import LoginPage from './pages/LoginPage/LoginPage';
-import NewsFeedPage from './pages/NewsFeedPage/NewsFeedPage';
-import WatchPage from './pages/WatchPage/WatchPage';
-import { history } from './history';
-import { Router, Switch } from 'react-router-dom';
-import NavigationBar from './components/NavigationBar/NavigationBar';
-import NavigationPage from './pages/NavigationPage';
+import { Switch } from 'react-router-dom';
+import NavigationPage from './pages/NavigationPage/NavigationPage';
 
 
 

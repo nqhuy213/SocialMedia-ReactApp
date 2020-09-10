@@ -6,8 +6,8 @@ const initialState = {
     posts:{
       items:[],
       nextCount:0,
-    }
-    
+    },
+    activeUsers: []
   },
   error: null
 }
@@ -62,12 +62,6 @@ export default function NewsFeed(state = initialState, action = {}){
         }
       }
 
-    case types.FETCH_COMMENTS_SUCCESS:
-      var finalState = state
-      var index = finalState.data.posts.items.findIndex(p => p._id === action.payload.postId)
-      finalState.data.posts.items[index].comments = action.payload.comments
-      return finalState
-    
     case types.UPDATE_POST_SUCCESS:
       return {
         ...state,

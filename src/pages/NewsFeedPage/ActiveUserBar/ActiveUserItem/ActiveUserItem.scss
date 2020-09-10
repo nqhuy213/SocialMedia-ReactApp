@@ -1,0 +1,14 @@
+@import '../../../../styles/shared.scss';
+
+.active-user-container {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+  border-radius: 10px;
+  width: 100%;
+} 
+
+.active-user-container:hover {
+  background-color: $gray-hover;
+  cursor: pointer;
+}
