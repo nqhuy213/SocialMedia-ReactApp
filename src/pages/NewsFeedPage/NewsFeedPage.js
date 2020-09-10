@@ -10,31 +10,8 @@ import { fetchNewsFeed, updatePost } from '../../redux/actions/post';
 import { getUserId } from '../../utils/user';
 
 export default function NewsFeedPage({props}) {
-  // const {posts, likePost} = usePosts();
-  
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   /**Fetch data here */
-  //   console.log(posts);
-  // }, [posts]);
+  const {posts, likePost, commentPost} = usePosts();
   const [openPostForm, setOpenPostForm] = useState(false);
-  const posts = useSelector(state => state.NewsFeed.data.posts.items)
-  const socket = useSelector(state => state.Socket.socket)
-  const dispatch = useDispatch()
-
-  const likePost = (userId = getUserId(), postId) => {
-    socket.emit('like_post', {userId, postId})
-  }
-
-  useEffect(() => {
-    dispatch(fetchNewsFeed())
-    if(socket){
-      socket.on('update_post', (post) => {
-        dispatch(updatePost(post))
-      })
-    }
-  },[socket])
 
 
   return (
@@ -46,7 +23,7 @@ export default function NewsFeedPage({props}) {
             <AskPostBox openPostForm={() => setOpenPostForm(true)} />
           </div>
           <div className="post-list-container">
-            <PostItemList items={posts} onLikePost={likePost}/>
+            <PostItemList items={posts} likePost={likePost} commentPost={commentPost}/>
           </div>
         </div>
         <div className="left-flex-container"></div>

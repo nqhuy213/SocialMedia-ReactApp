@@ -4,11 +4,11 @@ import PostItem from '../PostItem/PostItem';
 import PropTypes from 'prop-types'
 
 function PostItemList(props) {
-  const {items, onLikePost} = props
+  const {items, likePost, commentPost} = props
 
   const itemsList = items.map((post) =>
     <div key={post._id} className='post-item-container'>
-      <PostItem post={post} updateLike={onLikePost}/>
+      <PostItem post={post} likePost={likePost} commentPost={commentPost}/>
     </div>
   );
   return (
@@ -20,7 +20,8 @@ function PostItemList(props) {
 
 PostItemList.propTypes = {
   items: PropTypes.array.isRequired,
-  onLikePost: PropTypes.func,
+  likePost: PropTypes.func,
+  commentPost: PropTypes.func,
 };
 
 export default PostItemList

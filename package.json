@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "history": "^4.10.1",
     "jsonwebtoken": "^8.5.1",
@@ -22,6 +20,11 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^1.2.1",
     "socket.io-client": "^2.3.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "react-test-render": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,4 +47,5 @@
       "last 1 safari version"
     ]
   }
+  
 }

@@ -4,16 +4,17 @@ import {Segment, Image, Icon, Button} from 'semantic-ui-react';
 import AvatarContainer from '../AvatarContainer/AvatarContainer';
 import CommentItem from '../CommentItem/CommentItem';
 import TextareaAutosize from 'react-textarea-autosize';
-import PropTypes from 'prop-types'
-import { getUserId } from '../../utils/user';
-import { IsLiked } from '../../utils/attachIsLiked';
+import PropTypes from 'prop-types';
+import {getUserId} from '../../utils/user';
+import {IsLiked} from '../../utils/attachIsLiked';
 
 export default function PostItem(props) {
-  const {post, updateLike} = props
+  const {post, likePost, commentPost} = props;
   /**States Section */
   const [commentText, setCommentText] = useState('');
-  const [showComment, setShowComment] = useState(post.comments.length == 0 ? true : false);
-
+  const [showComment, setShowComment] = useState(
+    post.comments.length == 0 ? true : false
+  );
 
   const onEnterPressed = (e) => {
     if (e.keyCode === 13 && e.shiftKey === false) {
@@ -24,24 +25,31 @@ export default function PostItem(props) {
   };
 
   const handleLike = async (e) => {
-    updateLike(getUserId(), post._id)
+    likePost({userId: getUserId(), postId: post._id});
   };
 
   const handleComment = (e) => {
-    
-  }
+    commentPost({
+      userId: getUserId(),
+      postId: post._id,
+      commentData: {
+        text: commentText,
+      },
+    });
+    setCommentText('')
+  };
 
   const handleShowComment = (e) => {
-    setShowComment(!showComment)
-  } 
+    setShowComment(!showComment);
+  };
 
-  const commentList = post.comments.map(cmt => {
+  const commentList = post.comments.map((cmt) => {
     return (
       <div key={cmt._id} className="comment-item-container">
-        <CommentItem comment={cmt} postId={post._id}/>
-      </div>)
-  })
-
+        <CommentItem comment={cmt}/>
+      </div>
+    );
+  });
 
   return (
     <Segment className="post-item-wrapper">
@@ -58,10 +66,7 @@ export default function PostItem(props) {
           <Icon name="like" size="small" color="red" />
           <span>{post.likes.length}</span>
         </div>
-        <span
-          className="post-comment-number"
-          onClick={handleShowComment}
-        >
+        <span className="post-comment-number" onClick={handleShowComment}>
           {post.comments.length} comments
         </span>
       </div>
@@ -93,7 +98,9 @@ export default function PostItem(props) {
             <TextareaAutosize
               className="comment-input"
               value={commentText}
-              onChange = {(e) => {setCommentText(e.target.value)}}
+              onChange={(e) => {
+                setCommentText(e.target.value);
+              }}
               placeholder="Write your comment"
               onKeyDown={onEnterPressed}
             />
@@ -106,5 +113,6 @@ export default function PostItem(props) {
 
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
-  updateLike: PropTypes.func,
+  likePost: PropTypes.func,
+  commentPost: PropTypes.func,
 };

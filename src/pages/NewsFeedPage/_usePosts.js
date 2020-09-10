@@ -8,8 +8,12 @@ export default function usePosts() {
   const socket = useSelector(state => state.Socket.socket)
   const dispatch = useDispatch()
 
-  const likePost = (userId = getUserId(), postId) => {
+  const likePost = ({userId, postId}) => {
     socket.emit('like_post', {userId, postId})
+  }
+
+  const commentPost = ({userId, postId, commentData}) => {
+    socket.emit('comment_post', {userId, postId, commentData})
   }
 
   useEffect(() => {
@@ -17,10 +21,9 @@ export default function usePosts() {
     if(socket){
       socket.on('update_post', (post) => {
         dispatch(updatePost(post))
-        
       })
     }
   },[socket])
 
-  return {posts, likePost}
+  return {posts, likePost, commentPost}
 }

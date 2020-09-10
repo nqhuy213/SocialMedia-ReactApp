@@ -2,14 +2,12 @@ import React from 'react';
 import './CommentItem.scss';
 import AvatarContainer from '../AvatarContainer/AvatarContainer';
 import { Segment } from 'semantic-ui-react';
-import useComment from './_useComment';
-import { getUserId } from '../../utils/user';
+import PropTypes from 'prop-types'
 
-export default function CommentItem({comment: currentComment, postId}) {
-  const {comment, sendLike, sendReply} = useComment(currentComment)
+export default function CommentItem(props) {
+  const {comment} = props
 
-  const handleLikeComment = (e) => {
-    sendLike({userId: getUserId(), postId, commentId: comment._id})
+  const handleLikeComment = () => {
     
   }
 
@@ -32,4 +30,8 @@ export default function CommentItem({comment: currentComment, postId}) {
     </div>
  )
 }
+
+CommentItem.propTypes = {
+  comment: PropTypes.object.isRequired,
+};
 
