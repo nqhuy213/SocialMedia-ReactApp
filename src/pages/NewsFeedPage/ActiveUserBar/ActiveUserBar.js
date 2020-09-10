@@ -9,15 +9,11 @@ export default function ActiveUserBar({activeUsers}) {
   return (
     <div className='active-user-bar-container'>
       <h1>Active users</h1>
-      <div className='active-user-container'>
-        <AvatarContainer online/>
-      </div>
-      
-    {
-      activeUsers.map(user => 
-        <ActiveUserItem user={user}/>
-      )
-    }
+      {
+        activeUsers.map(user => 
+          <ActiveUserItem key={user._id} user={user}/>
+        )
+      }
     </div>
   )
 }

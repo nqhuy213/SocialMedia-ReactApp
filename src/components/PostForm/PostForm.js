@@ -1,13 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import {useDispatch} from 'react-redux'
 import './PostForm.scss'
-import { Segment, Divider, Image, Form, TextArea, Button } from 'semantic-ui-react'
+import { Segment, Divider, Form, TextArea, Button } from 'semantic-ui-react'
 import AvatarContainer from '../AvatarContainer/AvatarContainer'
 import { postPost } from '../../api/post'
-import { getUserId } from '../../utils/user'
-import { initialSocket } from '../../socket/socket'
-import socketEvent from '../../socket/socketEvent'
-import { addNewPost } from '../../redux/actions/post'
+import { addNewPost } from '../../redux/actions/newsFeed'
 export default function PostForm({closePostForm}) {
   const dispatch = useDispatch()
   const [postDescription, setPostDescription] = useState('')
@@ -35,7 +32,7 @@ export default function PostForm({closePostForm}) {
           placeholder="What are your thinking?" 
           onChange={handleOnChange}
           value={postDescription}/>
-        <Button className='post-button' type='submit' fluid disabled={postDescription.trim() == '' ? true : false}>
+        <Button className='post-button' type='submit' fluid disabled={postDescription.trim() === '' ? true : false}>
           Post
         </Button>
       </Form>

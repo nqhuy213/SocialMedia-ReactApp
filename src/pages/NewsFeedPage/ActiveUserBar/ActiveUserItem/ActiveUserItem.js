@@ -6,7 +6,7 @@ import AvatarContainer from '../../../../components/AvatarContainer/AvatarContai
 export default function ActiveUserItem({user}) {
   return (
     <div className='active-user-container'>
-      <AvatarContainer/>
+      <AvatarContainer online src={user.profileImage} name={`${user.firstName} ${user.lastName}`}/>
     </div>
   )
 }

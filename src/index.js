@@ -4,7 +4,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css'
 import { Provider } from 'react-redux';
-import { BrowserRouter, Router} from 'react-router-dom';
+import { Router} from 'react-router-dom';
 import { history } from "./history";
 import { getToken } from './utils/token';
 import './index.scss'

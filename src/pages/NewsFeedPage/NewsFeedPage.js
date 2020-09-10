@@ -1,19 +1,17 @@
-import React, {useState, Fragment, useEffect} from 'react';
+import React, {useState, Fragment} from 'react';
 import './NewsFeedPage.scss';
 import AskPostBox from '../../components/AskPostBox/AskPostBox';
 import {Modal} from 'semantic-ui-react';
 import PostForm from '../../components/PostForm/PostForm';
 import PostItemList from '../../components/PostItemList/PostItemList';
 import usePosts from './_usePosts';
-import useActiveUser from './_useActiveUser'
+import useActiveFriends from './_useActiveFriends'
 import ActiveUserBar from './ActiveUserBar/ActiveUserBar';
 
 export default function NewsFeedPage() {
-  const {activeUsers} = useActiveUser()
+  const {activeFriends} = useActiveFriends()
   const {posts, likePost, commentPost} = usePosts();
   const [openPostForm, setOpenPostForm] = useState(false);
-
-  
 
   return (
     <Fragment>
@@ -32,7 +30,7 @@ export default function NewsFeedPage() {
         </div>
 
         <div className="right-flex-container">
-          <ActiveUserBar activeUsers={activeUsers}/>
+          <ActiveUserBar activeUsers={activeFriends}/>
         </div>
       </div>
       <Modal

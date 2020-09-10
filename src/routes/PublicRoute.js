@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Route, Redirect } from "react-router-dom";
-import NavigationBar from '../pages/NavigationPage/NavigationBar/NavigationBar';
 
 export default function PublicRoute({ component: Component, auth, redir, ...rest }) {
   

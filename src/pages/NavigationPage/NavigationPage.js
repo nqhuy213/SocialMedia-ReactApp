@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 import NavigationBar from './NavigationBar/NavigationBar'
 import NewsFeedPage from '../NewsFeedPage/NewsFeedPage'
 import './NavigationPage.scss'
@@ -12,16 +12,15 @@ export default function NavigationPage({page}) {
   const socket = useSelector(state => state.Socket.socket)
   
   useEffect(() => {
-    if(socket){
-      socket.emit('user_login', {userId: getUserId()})
+    if(socket){ 
     }
+
   },[socket])
 
   const handleChangePage = (page) => {
     setActivePage(page)
   }
 
-  var page;
   switch (activePage){
     case 'home':
       page = <NewsFeedPage/>

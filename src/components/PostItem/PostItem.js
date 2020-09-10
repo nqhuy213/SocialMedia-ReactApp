@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './PostItem.scss';
 import {Segment, Image, Icon, Button} from 'semantic-ui-react';
 import AvatarContainer from '../AvatarContainer/AvatarContainer';
@@ -13,7 +13,7 @@ export default function PostItem(props) {
   /**States Section */
   const [commentText, setCommentText] = useState('');
   const [showComment, setShowComment] = useState(
-    post.comments.length == 0 ? true : false
+    post.comments.length === 0 ? true : false
   );
 
   const onEnterPressed = (e) => {

@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import './TabBar.scss'
-import { Search, Button, Icon, Divider } from 'semantic-ui-react'
+import { Button, Icon, Divider } from 'semantic-ui-react'
 import { history } from '../../../../history'
 
 export default function TabBar({activePage, handleChangePage}) {

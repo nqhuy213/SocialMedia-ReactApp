@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { fetchNewsFeed, updatePost } from '../../redux/actions/post'
-import { getUserId } from '../../utils/user'
+import { fetchNewsFeed, updatePost } from '../../redux/actions/newsFeed'
 
 export default function usePosts() {
   const posts = useSelector(state => state.NewsFeed.data.posts.items)
@@ -23,7 +22,7 @@ export default function usePosts() {
         dispatch(updatePost(post))
       })
     }
-  },[socket])
+  },[socket, dispatch])
 
   return {posts, likePost, commentPost}
 }

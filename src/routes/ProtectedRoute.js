@@ -1,6 +1,5 @@
 import React, {useEffect } from 'react'
 import { Route, Redirect } from "react-router-dom";
-import NavigationBar from '../pages/NavigationPage/NavigationBar/NavigationBar';
 import {useSelector, useDispatch } from 'react-redux'
 import { loginSuccess } from '../redux/actions/auth';
 import { getToken } from '../utils/token';

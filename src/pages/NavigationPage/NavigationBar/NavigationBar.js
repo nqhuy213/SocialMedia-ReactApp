@@ -1,7 +1,7 @@
 import React from 'react'
 import './NavigationBar.scss'
 import logo from './logo.png'
-import { Search, Button, Icon } from 'semantic-ui-react'
+import { Search} from 'semantic-ui-react'
 import TabBar from './TabBar/TabBar'
 
 export default function NavigationBar({activePage, handleChangePage}) {

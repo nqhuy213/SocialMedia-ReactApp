@@ -1,5 +1,5 @@
 import * as types from '../types'
-import { getPosts, likePost, getPostComments } from '../../api/post'
+import { getPosts} from '../../api/post'
 
 function fetchNewsFeedBegin() {
   return {
@@ -36,13 +36,6 @@ function addNewPostSuccess(post){
   return{
     type: types.ADD_NEW_POST,
     payload: {post}
-  }
-}
-
-function fetchCommentsSuccess({postId,comments}){
-  return{
-    type: types.FETCH_COMMENTS_SUCCESS,
-    payload: {postId, comments}
   }
 }
 
@@ -85,5 +78,32 @@ export function addNewPost(post) {
 export function updatePost(post) {
   return dispatch => {
     dispatch(updatePostSuccess(post))
+  }
+}
+
+export function fetchActiveFriends(activeFriends) {
+  return dispatch => {
+    dispatch({
+      type: types.FETCH_ACTIVE_FRIENDS,
+      payload: activeFriends
+    })
+  }
+}
+
+export function updateActiveFriend (activeFriend) {
+  return dispatch => {
+    dispatch ({
+      type: types.UPDATE_ACTIVE_FRIEND,
+      payload: activeFriend
+    })
+  }
+}
+
+export function deleteActiveFriend (userId) {
+  return dispatch => {
+    dispatch ({
+      type: types.DELETE_ACTIVE_FRIEND,
+      payload: userId
+    })
   }
 }

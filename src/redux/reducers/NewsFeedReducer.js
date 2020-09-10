@@ -7,7 +7,7 @@ const initialState = {
       items:[],
       nextCount:0,
     },
-    activeUsers: []
+    activeFriends: []
   },
   error: null
 }
@@ -74,6 +74,33 @@ export default function NewsFeed(state = initialState, action = {}){
         }
       }
 
+    case types.FETCH_ACTIVE_FRIENDS: 
+      return {
+        ...state,
+        data:{
+          ...state.data,
+          activeFriends: action.payload
+        }
+      }
+
+    case types.UPDATE_ACTIVE_FRIEND:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          activeFriends: [...state.data.activeFriends, action.payload]
+        }
+      }
+    
+    case types.DELETE_ACTIVE_FRIEND:
+
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          activeFriends: [...state.data.activeFriends.filter(f => f._id !== action.payload)]
+        }
+      }
     default: return state
   }
 }
