@@ -1,0 +1,13 @@
+@import '../../styles/shared.scss';
+
+.gray-hover-container{
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.gray-hover-container:hover{
+  background-color: $gray-hover;
+}

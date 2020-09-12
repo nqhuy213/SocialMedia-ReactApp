@@ -15,6 +15,13 @@ export default function Auth(state = initialState, action = { }){
         userLoggedIn: true
       }
 
+    case types.LOGOUT_SUCCESS:
+      return {
+        ...state,
+        token: '',
+        userLoggedIn: false
+      }
+      
     default: return state
   }
 }

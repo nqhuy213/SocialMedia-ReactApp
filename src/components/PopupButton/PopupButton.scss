@@ -1,0 +1,18 @@
+@import '../../styles/shared.scss';
+
+.popup-trigger-button{
+  width: fit-content;
+  height: fit-content;
+  background-color: $popup-button-background;
+  box-shadow: none !important;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+
+.popup-trigger-button:hover{
+  background-color: $popup-hover-background;
+}
+
+.popup-panel-wrapper{
+  width: 350px !important;
+}

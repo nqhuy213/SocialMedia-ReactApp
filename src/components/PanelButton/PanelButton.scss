@@ -1,0 +1,39 @@
+@import '../../styles/shared.scss';
+
+.panel-button-container{
+  display: flex;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  position: relative;
+}
+
+.panel-button-container:hover{
+  cursor: pointer;
+}
+
+.panel-button-infomation-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10px;
+}
+
+.panel-button-icon{
+  width: fit-content;
+  height: fit-content;
+  background-color: $popup-button-background;
+  box-shadow: none !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  color: $gray-icon-color;
+}
+
+.panel-button-title-label{
+  font-weight: 900;
+  font-size: 15px;
+}
+
+.panel-button-meta-label{
+  font-size: 14px;
+  color: $dark-gray;
+}

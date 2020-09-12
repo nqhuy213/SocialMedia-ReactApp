@@ -8,3 +8,11 @@ export function loginSuccess(token) {
     })
   }
 }
+
+export function logoutSuccess(){
+  return dispatch => {
+    dispatch({
+      type: types.LOGOUT_SUCCESS
+    })
+  }
+}

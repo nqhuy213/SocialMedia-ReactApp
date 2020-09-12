@@ -1,0 +1,19 @@
+@import '../../../../styles/shared.scss';
+
+.hover-container{
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.hover-container:hover {
+  background-color: $gray-hover;
+  cursor: pointer;
+}
+
+.custom-divider{
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+}

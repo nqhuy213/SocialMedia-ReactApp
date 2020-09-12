@@ -2,12 +2,13 @@ import React from 'react';
 import './ActiveUserItem.scss';
 import PropTypes from 'prop-types';
 import AvatarContainer from '../../../../components/AvatarContainer/AvatarContainer'
+import GrayHoverContainer from '../../../../components/GrayHoverContainer/GrayHoverContainer';
 
 export default function ActiveUserItem({user}) {
   return (
-    <div className='active-user-container'>
+    <GrayHoverContainer>
       <AvatarContainer online src={user.profileImage} name={`${user.firstName} ${user.lastName}`}/>
-    </div>
+    </GrayHoverContainer>
   )
 }
 

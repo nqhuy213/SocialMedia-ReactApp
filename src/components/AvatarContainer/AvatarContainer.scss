@@ -24,8 +24,12 @@
   color: none;
   background: none;
 }
+.avatar-meta-label{
+  font-size: 14px;
+  color: $dark-gray;
+}
 
-.avatar-date-label::selection{
+.avatar-meta-label::selection{
   color: none;
   background: none;
 }
