@@ -1,4 +1,4 @@
-@import '../../styles/shared.scss';
+@import '../../../styles/shared.scss';
 
 .post-form-wrapper{
   padding: 15px 15px 20px 15px !important;
@@ -6,17 +6,6 @@
 
   box-shadow: $box-shadow-value;
 }
-
-
-.post-description-textarea{
-  resize: none !important;
-  border: none !important;
-  font-size: 25px !important;
-  height: 200px !important;
-  padding: 0 !important;
-  margin-top: 20px !important;
-}
-
 .post-button{
   margin-top: 30px !important;
   background-color: $primary-blue !important;

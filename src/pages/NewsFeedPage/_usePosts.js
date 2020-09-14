@@ -15,6 +15,10 @@ export default function usePosts() {
     socket.emit('comment_post', {userId, postId, commentData})
   }
 
+  const likeComment = ({userId, postId, commentId}) => {
+    socket.emit('like_comment', {userId, postId, commentId})
+  }
+  
   useEffect(() => {
     dispatch(fetchNewsFeed())
     if(socket){
@@ -24,5 +28,5 @@ export default function usePosts() {
     }
   },[socket, dispatch])
 
-  return {posts, likePost, commentPost}
+  return {posts, likePost, commentPost, likeComment}
 }

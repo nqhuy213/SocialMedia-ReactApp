@@ -18,7 +18,9 @@ export default function AvatarContainer({src, name, online, meta, size}) {
         online ? <span className="online-indicator"></span> : null
       }
       <div className='avatar-infomation-container'>
-        <span className='avatar-name-label'>{name || 'My name'}</span>
+        {
+          name ? <span className='avatar-name-label'>{name}</span> : null
+        }
         <span className='avatar-meta-label'>{meta}</span>
       </div>
     </div>

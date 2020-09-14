@@ -7,9 +7,10 @@ import TextareaAutosize from 'react-textarea-autosize';
 import PropTypes from 'prop-types';
 import {getUserId} from '../../utils/user';
 import {IsLiked} from '../../utils/attachIsLiked';
-
+import moment from 'moment'
+import LikeIcon from '../LikeIcon';
 export default function PostItem(props) {
-  const {post, likePost, commentPost} = props;
+  const {post, likePost, commentPost, likeComment} = props;
   /**States Section */
   const [commentText, setCommentText] = useState('');
   const [showComment, setShowComment] = useState(
@@ -46,7 +47,7 @@ export default function PostItem(props) {
   const commentList = post.comments.map((cmt) => {
     return (
       <div key={cmt._id} className="comment-item-container">
-        <CommentItem comment={cmt}/>
+        <CommentItem comment={cmt} likeComment={likeComment}/>
       </div>
     );
   });
@@ -55,7 +56,8 @@ export default function PostItem(props) {
     <Segment className="post-item-wrapper">
       <AvatarContainer
         src="https://react.semantic-ui.com/images/wireframe/square-image.png"
-        name="My Name"
+        name={post.postedBy.firstName + " " + post.postedBy.lastName}
+        meta={moment(post.createdAt).fromNow()}
       />
       <div className="post-description-container">{post.description}</div>
       {post.imageSrc ? (
@@ -63,7 +65,7 @@ export default function PostItem(props) {
       ) : null}
       <div className="post-like-number">
         <div id="post-like-label">
-          <Icon name="like" size="small" color="red" />
+          <LikeIcon/>
           <span>{post.likes.length}</span>
         </div>
         <span className="post-comment-number" onClick={handleShowComment}>
@@ -115,4 +117,5 @@ PostItem.propTypes = {
   post: PropTypes.object.isRequired,
   likePost: PropTypes.func,
   commentPost: PropTypes.func,
+  likeComment: PropTypes.func,
 };

@@ -26,10 +26,11 @@
   font-size: 15px;
   line-height: 20px;
   word-spacing: 1px;
+  padding-bottom: 7px;
 }
 
 .date-time-label{
-  font-size: 13px;
+  font-size: 0.9rem;
   color: rgb(82, 81, 81);
 }
 
@@ -37,10 +38,11 @@
   display: flex;
   padding-left: 10px;
   padding-top: 5px;
+  align-items: flex-end;
 }
 
 .comment-action-item{
-  font-size: 12.5px;
+  font-size: 0.9rem;
   font-weight: 700;
   margin-right: 4px;
   margin-left: 4px;
