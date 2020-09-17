@@ -9,6 +9,8 @@ import {getUserId} from '../../utils/user';
 import {IsLiked} from '../../utils/attachIsLiked';
 import moment from 'moment'
 import LikeIcon from '../LikeIcon';
+
+
 export default function PostItem(props) {
   const {post, likePost, commentPost, likeComment} = props;
   /**States Section */

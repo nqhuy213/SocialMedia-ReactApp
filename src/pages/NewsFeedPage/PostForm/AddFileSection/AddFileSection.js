@@ -8,17 +8,7 @@ export default function AddFileSection(props) {
   const imageInputRef = useRef(null)
 
   const handleImageChange = (e) => {
-    console.log(e.target.files[0]);
-    const reader = new FileReader()
-    if(e.target.files[0]){
-      reader.readAsDataURL(e.target.files[0])
-    }
-    reader.onload = () => {
-      if(reader.readyState == 2) {
-        props.handleImageChosen(reader.result)
-      }
-    }
-    e.target.value= null
+    props.handleImageChosen(e)
   }
 
   const clickImageInput = (e) => {

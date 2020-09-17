@@ -55,7 +55,8 @@ const ShrinkTextArea = styled(({hasImage, ...props}) => <TextArea {...props}/>)`
 export default function PostForm({closePostForm}) {
   const dispatch = useDispatch();
   const [postDescription, setPostDescription] = useState('');
-  const [postImage, setPostImage] = useState('');
+  const [postImageUrl, setPostImageUrl] = useState('');
+  const [postImageFile, setPostImageFile] = useState(null);
 
   const handleOnChange = (e) => {
     setPostDescription(e.target.value);
@@ -71,12 +72,18 @@ export default function PostForm({closePostForm}) {
     }
   };
 
-  const chooseImage = (url) => {
-    setPostImage(url);
+  const chooseImage = (e) => {
+    const reader = new FileReader()
+    if(e.target.files[0]){
+      setPostImageFile(e.target.files[0])
+      reader.readAsDataURL(e.target.files[0])
+      reader.onloadend = () => {
+          setPostImageUrl(reader.result)
+      }
+    }
+    e.target.value = null
   }
-
   
-
   return (
     <Segment className="post-form-wrapper">
       <PostFormHeaderContainer>
@@ -92,21 +99,21 @@ export default function PostForm({closePostForm}) {
       />
       <Form onSubmit={handleOnSubmit}>
         <ShrinkTextArea
-          hasImage={postImage ? true : false}
+          hasImage={postImageUrl ? true : false}
           placeholder="What are your thinking?"
           onChange={handleOnChange}
           value={postDescription}
         />
-        {postImage ? 
+        {postImageUrl ? 
         <Fragment>
           <CloseImageContainer>
-            <CloseButton onClick = {() => chooseImage('')}/>
+            <CloseButton onClick = {() => setPostImageUrl('')}/>
           </CloseImageContainer>
-          <ImagePreview tabIndex={0} src={postImage} fluid /> 
+          <ImagePreview tabIndex={0} src={postImageUrl} fluid /> 
         </Fragment>
         : null}
         <AddFileSection
-          postImage={postImage}
+          postImage={postImageUrl}
           handleImageChosen={chooseImage}
         />
         <Button
@@ -114,7 +121,7 @@ export default function PostForm({closePostForm}) {
           type="submit"
           fluid
           disabled={
-            (postDescription.trim() === '' && postImage.trim() === '') ? true : false
+            (postDescription.trim() === '' && postImageUrl.trim() === '') ? true : false
           }
         >
           Post

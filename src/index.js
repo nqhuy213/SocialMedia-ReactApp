@@ -2,25 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'semantic-ui-css/semantic.min.css'
-import { Provider } from 'react-redux';
-import { Router} from 'react-router-dom';
-import { history } from "./history";
-import { getToken } from './utils/token';
-import './index.scss'
-import { store } from './redux/reduxStore';
-var userLoggedIn = false
+import 'semantic-ui-css/semantic.min.css';
+import {Provider} from 'react-redux';
+import {Router} from 'react-router-dom';
+import {history} from './history';
+import {getToken} from './utils/token';
+import './index.scss';
+import {store} from './redux/reduxStore';
+import {ThemeProvider} from 'styled-components';
+import theme from './styles/theme';
+var userLoggedIn = false;
 
-const admin = getToken('token')
-if(admin){
-  userLoggedIn = true
+const admin = getToken('token');
+if (admin) {
+  userLoggedIn = true;
 }
-
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <App userLoggedIn={userLoggedIn}/>
+      <ThemeProvider theme={theme}>
+        <App userLoggedIn={userLoggedIn} />
+      </ThemeProvider>
     </Router>
   </Provider>,
   document.getElementById('root')
