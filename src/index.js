@@ -16,9 +16,7 @@ import theme from './styles/theme';
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <ThemeProvider theme={theme}>
         <App/>
-      </ThemeProvider>
     </Router>
   </Provider>,
   document.getElementById('root')

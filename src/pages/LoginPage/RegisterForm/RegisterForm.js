@@ -75,13 +75,15 @@ export default function RegisterForm({closeRegisterForm}) {
 
   const handleOnSubmit = async (e) => {
     const {lastName, firstName, email, password, day, month, year, gender} = registerEntries
-    const dobString = `${day}/${month}/${year}`
+    const dobString = `${month}/${day}/${year}`
     var dt = Date.parse(dobString)
     var dob;
     if(!allExisted()){
       setErrors(errors => ({...errors, global:'Please fill in all the fields'}))
     }
     else if (!dt) {
+      console.log(dobString);
+      console.log(dt);
       setErrors(errors => ({...errors, global:'Date of birth must a valid date'}))
     }else{
       dob = new Date(dt)
@@ -164,7 +166,7 @@ export default function RegisterForm({closeRegisterForm}) {
                 <option value="day">Day</option>
                 {[...Array(31)].map((x, i) => {
                   return (
-                    <option key={i} value={`0${i + 1}`}>
+                    <option key={i} value={(i + 1) < 10 ? `0${i + 1}` : `${i+1}`}>
                       {i + 1}
                     </option>
                   );
@@ -205,7 +207,7 @@ export default function RegisterForm({closeRegisterForm}) {
                 <option value="year">Year</option>
                 {[...Array(100)].map((x, i) => {
                   return (
-                    <option key={2020 - i} value={`0${2020 - i}`}>
+                    <option key={2020 - i} value={`${2020 - i}`}>
                       {2020 -  i}
                     </option>
                   );
