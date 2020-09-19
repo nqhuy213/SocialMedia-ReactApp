@@ -33,7 +33,6 @@ export default function CommentItem(props) {
   };
 
   useEffect(() => {
-    console.log(props.isLiked);
   }, [props.isLiked]);
   return (
     <CommentItemWrapper>

@@ -2,7 +2,8 @@ import * as types from '../types'
 
 const initialState = {
   token: null,
-  userLoggedIn: false
+  userLoggedIn: false,
+  user: null,
 }
 
 export default function Auth(state = initialState, action = { }){
@@ -21,7 +22,12 @@ export default function Auth(state = initialState, action = { }){
         token: '',
         userLoggedIn: false
       }
-      
+    
+    case types.FETCH_USER:
+      return{
+        ...state,
+        user: action.payload
+      }
     default: return state
   }
 }

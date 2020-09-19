@@ -6,23 +6,18 @@ import 'semantic-ui-css/semantic.min.css';
 import {Provider} from 'react-redux';
 import {Router} from 'react-router-dom';
 import {history} from './history';
-import {getToken} from './utils/token';
+
 import './index.scss';
 import {store} from './redux/reduxStore';
 import {ThemeProvider} from 'styled-components';
 import theme from './styles/theme';
-var userLoggedIn = false;
 
-const admin = getToken('token');
-if (admin) {
-  userLoggedIn = true;
-}
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <ThemeProvider theme={theme}>
-        <App userLoggedIn={userLoggedIn} />
+        <App/>
       </ThemeProvider>
     </Router>
   </Provider>,

@@ -8,6 +8,7 @@ import GrayHoverContainer from '../../../../components/GrayHoverContainer/GrayHo
 import PanelButton from '../../../../components/PanelButton/PanelButton';
 import {logoutSuccess} from '../../../../redux/actions/auth'
 import {getUserId} from '../../../../utils/user'
+import { closeSocket } from '../../../../redux/actions/socket';
 
 export default function AccountPanel(props) {
   const socket = useSelector(state => state.Socket.socket)
@@ -19,7 +20,8 @@ export default function AccountPanel(props) {
 
   const handleLogOut = () => {
     localStorage.removeItem('token')
-    socket.disconnect()
+    dispatch(closeSocket(socket))
+    dispatch(logoutSuccess())
     window.location.reload()
   }
 

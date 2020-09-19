@@ -7,12 +7,13 @@ import PostItemList from '../../components/PostItemList/PostItemList';
 import usePosts from './_usePosts';
 import useActiveFriends from './_useActiveFriends';
 import ActiveUserBar from './ActiveUserBar/ActiveUserBar';
+import { useSelector } from 'react-redux';
 
 export default function NewsFeedPage() {
   const {activeFriends} = useActiveFriends();
   const {posts, likePost, commentPost, likeComment} = usePosts();
   const [openPostForm, setOpenPostForm] = useState(false);
-
+  const user = useSelector(state => state.Auth.user)
   return (
     <Fragment>
       <div className="page-container news-feed-page">
@@ -45,6 +46,7 @@ export default function NewsFeedPage() {
         onClose={() => setOpenPostForm(false)}
       >
         <PostForm
+          user={user}
           closePostForm={() => {
             setOpenPostForm(false);
           }}

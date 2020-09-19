@@ -16,3 +16,12 @@ export function logoutSuccess(){
     })
   }
 }
+
+export function fetchUser(user) {
+  return dispatch => {
+    dispatch({
+      type: types.FETCH_USER,
+      payload: user
+    })
+  }
+}

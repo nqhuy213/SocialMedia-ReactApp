@@ -16,6 +16,9 @@ import {addNewPost} from '../../../redux/actions/newsFeed';
 import AddFileSection from './AddFileSection';
 import styled from 'styled-components';
 import CloseButton from '../../../components/CloseButton/CloseButton';
+import UploadImageService, { uploadImage } from '../../../api/upload'
+import axios from 'axios'
+import { callAPI } from '../../../api/base';
 
 const PostFormHeaderContainer = styled.div`
   display: flex;
@@ -52,24 +55,31 @@ const ShrinkTextArea = styled(({hasImage, ...props}) => <TextArea {...props}/>)`
   margin-top: 20px !important;
 `;
 
-export default function PostForm({closePostForm}) {
+export default function PostForm({closePostForm, user}) {
   const dispatch = useDispatch();
   const [postDescription, setPostDescription] = useState('');
   const [postImageUrl, setPostImageUrl] = useState('');
   const [postImageFile, setPostImageFile] = useState(null);
-
+  
   const handleOnChange = (e) => {
     setPostDescription(e.target.value);
   };
 
   const handleOnSubmit = async () => {
-    const result = await postPost({description: postDescription});
-    if (result.success) {
-      dispatch(addNewPost(result.data));
-      closePostForm();
-    } else {
-      // TODO: handle failure
+    let imageURL
+    if(postImageFile){
+      var formData = new FormData
+      formData.append('image', postImageFile)
+      const result = await uploadImage(FormData)
     }
+    
+    // const result = await postPost({description: postDescription});
+    // if (result.success) {
+    //   dispatch(addNewPost(result.data));
+    //   closePostForm();
+    // } else {
+    //   // TODO: handle failure
+    // }
   };
 
   const chooseImage = (e) => {
@@ -95,7 +105,7 @@ export default function PostForm({closePostForm}) {
       <Divider />
       <AvatarContainer
         src="https://react.semantic-ui.com/images/wireframe/square-image.png"
-        name="My Name"
+        name={`${user.firstName} ${user.lastName}`}
       />
       <Form onSubmit={handleOnSubmit}>
         <ShrinkTextArea

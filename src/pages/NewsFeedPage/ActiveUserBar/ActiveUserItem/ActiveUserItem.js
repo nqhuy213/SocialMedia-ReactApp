@@ -7,7 +7,7 @@ import GrayHoverContainer from '../../../../components/GrayHoverContainer/GrayHo
 export default function ActiveUserItem({user}) {
   return (
     <GrayHoverContainer>
-      <AvatarContainer online src={user.profileImage} name={`${user.firstName} ${user.lastName}`}/>
+      <AvatarContainer online name={`${user.firstName} ${user.lastName}`}/>
     </GrayHoverContainer>
   )
 }

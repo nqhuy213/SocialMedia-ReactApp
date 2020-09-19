@@ -23,6 +23,7 @@ export default function PostItem(props) {
     if (e.keyCode === 13 && e.shiftKey === false) {
       e.preventDefault();
       /**Submit the comment */
+      if(commentText.trim() === '') return
       handleComment();
     }
   };

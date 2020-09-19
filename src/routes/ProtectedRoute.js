@@ -1,26 +1,17 @@
 import React, {useEffect } from 'react'
 import { Route, Redirect } from "react-router-dom";
 import {useSelector, useDispatch } from 'react-redux'
-import { loginSuccess } from '../redux/actions/auth';
+import { fetchUser, loginSuccess } from '../redux/actions/auth';
 import { getToken } from '../utils/token';
 import { openNewSocket } from '../redux/actions/socket';
+import { fetchActiveFriends, updateActiveFriend, deleteActiveFriend } from '../redux/actions/newsFeed'
+import {getUserId} from '../utils/user'
 
 
 function ProtectedRoute({ component: Component, auth, redir, ...rest }) {
-  const dispatch = useDispatch()
-  const uAuth = useSelector(state => state.Auth.userLoggedIn)
-
-  useEffect(() => {
-    if(auth && !uAuth){
-      dispatch(loginSuccess(getToken('token')))
-      dispatch(openNewSocket())
-    }
-  }, [])
-
-  
   return (
       <Route {...rest} render={(props) => (
-        auth || uAuth === true
+        auth === true
           ? <Component page={rest.path.slice(1)} />
           : <Redirect to={redir} />
       )} />
