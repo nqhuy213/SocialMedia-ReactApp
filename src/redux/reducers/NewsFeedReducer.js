@@ -57,6 +57,7 @@ export default function NewsFeed(state = initialState, action = {}){
         data: {
           ...state.data,
           posts: {
+            ...state.data.posts,
             items: [ action.payload.post,...state.data.posts.items]
           }
         }
@@ -69,7 +70,7 @@ export default function NewsFeed(state = initialState, action = {}){
           ...state.data,
           posts: {
             ...state.data.posts,
-            items: [...state.data.posts.items.filter(p => p._id !== action.payload.post._id), action.payload.post]
+            items: state.data.posts.items.map((post) => post._id === action.payload.post._id ? {...post, ...action.payload.post} : {...post})
           }
         }
       }

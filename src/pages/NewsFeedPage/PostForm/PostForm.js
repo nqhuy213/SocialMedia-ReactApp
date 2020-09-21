@@ -66,20 +66,20 @@ export default function PostForm({closePostForm, user}) {
   };
 
   const handleOnSubmit = async () => {
-    let imageURL
-    if(postImageFile){
-      var formData = new FormData
-      formData.append('image', postImageFile)
-      const result = await uploadImage(FormData)
-    }
-    
-    // const result = await postPost({description: postDescription});
-    // if (result.success) {
-    //   dispatch(addNewPost(result.data));
-    //   closePostForm();
-    // } else {
-    //   // TODO: handle failure
+    // let imageURL
+    // if(postImageFile){
+    //   var formData = new FormData
+    //   formData.append('image', postImageFile)
+    //   const result = await uploadImage(FormData)
     // }
+    
+    const result = await postPost({description: postDescription});
+    if (result.success) {
+      dispatch(addNewPost(result.data));
+      closePostForm();
+    } else {
+      // TODO: handle failure
+    }
   };
 
   const chooseImage = (e) => {

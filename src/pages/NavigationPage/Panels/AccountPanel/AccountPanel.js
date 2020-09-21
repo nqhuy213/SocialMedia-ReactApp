@@ -11,6 +11,7 @@ import {getUserId} from '../../../../utils/user'
 import { closeSocket } from '../../../../redux/actions/socket';
 
 export default function AccountPanel(props) {
+  const user = useSelector(state => state.Auth.user)
   const socket = useSelector(state => state.Socket.socket)
   const dispatch = useDispatch()
 
@@ -19,9 +20,10 @@ export default function AccountPanel(props) {
   },[socket])
 
   const handleLogOut = () => {
-    localStorage.removeItem('token')
-    dispatch(closeSocket(socket))
+    // socket.emit('user_logout', {userId: getUserId()})
     dispatch(logoutSuccess())
+    dispatch(closeSocket(socket))
+    localStorage.removeItem('token')
     window.location.reload()
   }
 

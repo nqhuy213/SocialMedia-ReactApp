@@ -16,14 +16,16 @@ import TextBox from './components/TextBox/TextBox';
 
 
 const token = getToken('token')
+
 const localAuth = token ? true : false
+
 function App() {
   const dispatch = useDispatch()
   const userLoggedIn = useSelector(state => state.Auth.userLoggedIn)
   const socket = useSelector(state => state.Socket.socket)
 
   useEffect(() => {
-    if (token && !userLoggedIn) {
+    if (localAuth && !userLoggedIn) {
       dispatch(loginSuccess(token))
       dispatch(openNewSocket())
     }
