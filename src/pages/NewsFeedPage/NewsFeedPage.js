@@ -8,6 +8,7 @@ import usePosts from './_usePosts';
 import useActiveFriends from './_useActiveFriends';
 import ActiveUserBar from './ActiveUserBar/ActiveUserBar';
 import { useSelector } from 'react-redux';
+import TextBox from '../../components/TextBox/TextBox';
 
 export default function NewsFeedPage() {
   const {activeFriends} = useActiveFriends();
@@ -18,7 +19,6 @@ export default function NewsFeedPage() {
     <Fragment>
       <div className="page-container news-feed-page">
         <div className="left-flex-container"></div>
-
         <div className="middle-flex-container">
           <div className="ask-post-box-container">
             <AskPostBox openPostForm={() => setOpenPostForm(true)} />
@@ -32,7 +32,6 @@ export default function NewsFeedPage() {
             />
           </div>
         </div>
-
         <div className="right-flex-container">
           <ActiveUserBar activeUsers={activeFriends} />
         </div>

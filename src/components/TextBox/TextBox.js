@@ -1,14 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StyledSegment } from '../../styles/shared'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import TextareaAutosize from 'react-autosize-textarea/lib'
 
 const StyledTextBox = styled(
   ({ backgroundColor, ...props }) => (
     <TextareaAutosize {...props} />
   )
-)`
+)
+`
   border: none;
   resize: none;
   padding: 0;
