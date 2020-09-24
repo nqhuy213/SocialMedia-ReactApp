@@ -1,9 +1,9 @@
 export default {
   colors: {
-    primaryBlue: "#1877f2",
-    primaryBlueHover: "#2271da",
-    darkGray: "#606770",
-    lightGray: "#f0f2f5",
+    primaryblue: "#1877f2",
+    primaryblueHover: "#2271da",
+    darkgray: "#606770",
+    lightgray: "#f0f2f5",
     popupButtonBackground: "#e8eaeb",
     popupHoverBackground: "#e0e0e2",
     pageBackground: "#F2F3F5",

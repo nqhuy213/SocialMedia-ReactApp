@@ -21,7 +21,7 @@ const StyledTextBox = styled(
       case 'darkblue':
         return 'white'
       default:
-        return 'inherit'
+        return 'black'
     }
   }};
   width: ${(props) => props.width};

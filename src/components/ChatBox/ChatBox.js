@@ -6,6 +6,22 @@ import { getUserId } from '../../utils/user'
 import GrayHoverContainer from '../GrayHoverContainer/GrayHoverContainer'
 import CloseButton from '../CloseButton/CloseButton'
 import TextBox from '../TextBox/TextBox'
+import { Icon } from 'semantic-ui-react'
+
+const ImageIcon = styled(Icon)`
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  :hover{
+    background-color: #f0f2f5;
+  };
+  color: ${props => props.theme.colors.primaryblue};
+`
+
+const FileInput = styled.input `
+  display: none;
+`
+
 
 const ChatBoxWapprer = styled.section`
   background-color: white;
@@ -31,7 +47,15 @@ const ChatBoxHeader = styled.div`
 const CustomCloseButton = styled(CloseButton)`
   background-color: white !important;
 `
-const ChatBoxFooter = styled.div``
+const ChatBoxFooter = styled.div`
+  padding-top: 3px ;
+  padding-bottom:3px;
+  padding-left: 3px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+`
 
 export default function ChatBox(props) {
   return (
@@ -44,7 +68,8 @@ export default function ChatBox(props) {
       </ChatBoxHeader>
       
       <ChatBoxFooter>
-        <TextBox maxRows={5} rows={1} backgroundColor='lightGray' placeholder='Aa'/>
+        <TextBox maxRows={5} rows={1} backgroundColor='lightgray' placeholder='Aa'/>
+        <ImageIcon name="images" size='large' circular/>
       </ChatBoxFooter>
     </ChatBoxWapprer>
   )

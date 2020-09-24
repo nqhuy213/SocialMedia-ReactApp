@@ -8,9 +8,9 @@ const CloseIcon = styled(Icon) `
   padding: 0 !important;
   margin: 0 !important;
   background-color:  ${props => !props.basic && '#e8eaeb'};
-  color: ${props => props.primary && props.theme.colors.primaryBlue};
+  color: ${props => props.primary && props.theme.colors.primaryblue};
   :hover{
-    background-color: ${props => props.theme.colors.lightGray};
+    background-color: ${props => props.theme.colors.lightgray};
   }
 `
 
