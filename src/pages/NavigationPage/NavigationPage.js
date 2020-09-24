@@ -5,6 +5,7 @@ import NewsFeedPage from '../NewsFeedPage/NewsFeedPage'
 import './NavigationPage.scss'
 import WatchPage from '../WatchPage/WatchPage'
 import { getUserId } from '../../utils/user'
+import ChatBox from '../../components/ChatBox/ChatBox'
 
 export default function NavigationPage({page}) {
 
@@ -38,6 +39,7 @@ export default function NavigationPage({page}) {
       <NavigationBar activePage={activePage} handleChangePage={handleChangePage}/>
       <div className='page-container'>
         {page}
+        <ChatBox />
       </div>
     </Fragment>
   )

@@ -15,7 +15,6 @@ const StyledTextBox = styled(
   padding: 0;
   background-color: transparent;
   color: ${(props) => {
-    console.log(props.theme);
     switch (props.color) {
       case 'darkgray':
         return 'black !important'
@@ -30,6 +29,7 @@ const StyledTextBox = styled(
     props.theme.typography.fontFamily};
   font-size: ${(props) =>
     props.theme.typography.pxToRem(15)};
+  font-weight: 500;
   overflow: hidden;
   :focus {
     outline: none;

@@ -7,18 +7,22 @@ const CloseIcon = styled(Icon) `
   box-shadow: none !important;
   padding: 0 !important;
   margin: 0 !important;
-  background-color:  #e8eaeb;
+  background-color:  ${props => !props.basic && '#e8eaeb'};
+  color: ${props => props.primary && props.theme.colors.primaryBlue};
   :hover{
-    background-color: #d4d4da;
+    background-color: ${props => props.theme.colors.lightGray};
   }
 `
 
 export default function CloseButton(props) {
   return (
-    <CloseIcon name="close" circular onClick={props.onClick}/>
+    <CloseIcon primary="true" basic="true" name="close" circular onClick={props.onClick}/>
   )
 }
 
 CloseButton.propTypes = {
   onClick: PropTypes.func,
+  primary: PropTypes.bool,
+  basic: PropTypes.bool,
 };
+
