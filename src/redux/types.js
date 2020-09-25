@@ -18,3 +18,7 @@ export const CLOSE_SOCKET = 'CLOSE_SOCKET'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 export const FETCH_USER = 'FETCH_USER'
+
+/**Chat actions */
+export const OPEN_CHAT = 'OPEN_CHAT'
+export const CLOSE_CHAT = 'CLOSE_CHAT'

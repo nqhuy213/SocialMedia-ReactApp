@@ -1,33 +1,33 @@
-import * as types from '../types'
+import * as types from "../types";
 
 const initialState = {
   token: null,
   userLoggedIn: false,
   user: null,
-}
+};
 
-export default function Auth(state = initialState, action = { }){
-  switch (action.type){
+export default function Auth(state = initialState, action = {}) {
+  switch (action.type) {
     case types.LOGIN_SUCCESS:
-    
       return {
         ...state,
         token: action.payload,
-        userLoggedIn: true
-      }
+        userLoggedIn: true,
+      };
 
     case types.LOGOUT_SUCCESS:
       return {
         ...state,
-        token: '',
-        userLoggedIn: false
-      }
-    
+        token: "",
+        userLoggedIn: false,
+      };
+
     case types.FETCH_USER:
-      return{
+      return {
         ...state,
-        user: action.payload
-      }
-    default: return state
+        user: action.payload,
+      };
+    default:
+      return state;
   }
 }

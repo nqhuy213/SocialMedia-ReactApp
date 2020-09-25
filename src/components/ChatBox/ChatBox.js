@@ -27,8 +27,8 @@ const ChatBoxWapprer = styled.section`
   background-color: white;
   box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2),
     0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  height: 450px;
-  width: 330px;
+  height: 420px;
+  width: 320px;
   border-radius: 7px;
   display: flex;
   flex-direction: column;
@@ -64,7 +64,7 @@ export default function ChatBox(props) {
         <GrayHoverContainer fitted>
           <AvatarContainer size='mini' name={`${props.guest.firstName} ${props.guest.lastName}`}/>
         </GrayHoverContainer>
-        <CustomCloseButton primary={true} basic={true}/>
+        <CustomCloseButton primary={true} basic={true} onClick={props.onClose}/>
       </ChatBoxHeader>
       
       <ChatBoxFooter>
@@ -76,17 +76,18 @@ export default function ChatBox(props) {
 }
 
 ChatBox.propTypes = {
-  /** The host information */
+  /** The host (Current user) information */
   host: PropTypes.object,
 
-  /** The guest information */
+  /** The guest (Receivers) information */
   guest: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.arrayOf(PropTypes.object)
   ]),
-
   /** Recent messages to show */
-  messages: PropTypes.arrayOf(PropTypes.object)
+  messages: PropTypes.arrayOf(PropTypes.object),
+
+  onClose: PropTypes.func,
 }
 
 ChatBox.defaultProps = {

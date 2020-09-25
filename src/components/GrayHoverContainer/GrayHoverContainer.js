@@ -11,12 +11,14 @@ const GrayContainer = styled.div`
   padding-right: ${props => props.fitted ? '6px' : 'none'};
   :hover {
     background-color:  rgba(204, 204, 204, 0.2);
+    cursor: pointer;
   }
 `;
 export default function GrayHoverContainer(props) {
-  return <GrayContainer fitted={props.fitted}>{props.children}</GrayContainer>;
+  return <GrayContainer onClick={props.onClick} fitted={props.fitted}>{props.children}</GrayContainer>;
 }
 GrayHoverContainer.propTypes = {
   children: PropTypes.element.isRequired,
-  fitted: PropTypes.bool
+  fitted: PropTypes.bool,
+  onClick: PropTypes.func,
 };

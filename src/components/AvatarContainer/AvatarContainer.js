@@ -9,6 +9,7 @@ const AContainer = styled.div`
   margin-bottom: 5px;
   margin-top: 5px;
   position: relative;
+  
 `;
 
 export default function AvatarContainer({ src, name, online, meta, size }) {
