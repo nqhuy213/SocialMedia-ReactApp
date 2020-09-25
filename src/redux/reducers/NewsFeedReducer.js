@@ -63,7 +63,7 @@ export default function NewsFeed(state = initialState, action = {}){
         }
       }
 
-    case types.UPDATE_POST_SUCCESS:
+    case types.UPDATE_NEWSFEED_POST_SUCCESS:
       return {
         ...state,
         data:{

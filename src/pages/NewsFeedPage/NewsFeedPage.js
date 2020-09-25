@@ -8,11 +8,10 @@ import usePosts from './_usePosts';
 import useActiveFriends from './_useActiveFriends';
 import ActiveUserBar from './ActiveUserBar/ActiveUserBar';
 import { useSelector } from 'react-redux';
-import TextBox from '../../components/TextBox/TextBox';
 
 export default function NewsFeedPage() {
   const {activeFriends} = useActiveFriends();
-  const {posts, likePost, commentPost, likeComment} = usePosts();
+  const {posts, likePost, commentPost, likeComment, getMorePost} = usePosts();
   const [openPostForm, setOpenPostForm] = useState(false);
   const user = useSelector(state => state.Auth.user)
   return (
@@ -29,6 +28,7 @@ export default function NewsFeedPage() {
               likePost={likePost}
               commentPost={commentPost}
               likeComment={likeComment}
+              getMorePost={getMorePost}
             />
           </div>
         </div>

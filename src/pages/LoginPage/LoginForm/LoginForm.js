@@ -46,9 +46,8 @@ function LoginForm({ openRegisterForm, ...props }) {
       setLoading(false)
       if (result.success) {
         setToken("token", result.token);
+        dispatch(openNewSocket())
         dispatch(loginSuccess(result.token));
-        dispatch(openNewSocket());
-        history.push("/home");
       } else {
         setErrors({ message: result.message });
       }

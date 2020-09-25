@@ -1,9 +1,5 @@
-import React, { Fragment, useRef, useCallback, useEffect } from "react";
+import React, { Fragment, useRef, useCallback} from "react";
 import PropTypes from 'prop-types'
-
-/**
- * useRef as Observer
- */
 
 export default function InfiniteScroll(props) {
   const observer = useRef();

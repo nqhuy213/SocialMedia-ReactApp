@@ -29,31 +29,17 @@ function App() {
       dispatch(loginSuccess(token))
       dispatch(openNewSocket())
     }
-    if(socket){
-      socket.emit('user_login', {userId:getUserId()})
-      socket.on('user_info', user => {
-        dispatch(fetchUser(user))
-      })
-      socket.on('active_friends', (data) => {
-        dispatch(fetchActiveFriends(data))
-      })
-      socket.on('friend_online', (data) => {
-        dispatch(updateActiveFriend(data))
-      })
-      socket.on('friend_offline', ({userId}) => {
-        dispatch(deleteActiveFriend(userId))
-      })
-    }
+    
   },[userLoggedIn, socket])
 
   return (
     <ThemeProvider theme={theme}>
       <Switch>
-        <ProtectedRoute path='/home' component={NavigationPage} auth={userLoggedIn || localAuth}/>
-        <ProtectedRoute path='/watch' component={NavigationPage} auth={userLoggedIn || localAuth}/>
-        <ProtectedRoute path='/marketplace' component={NavigationPage} auth={userLoggedIn || localAuth}/>
-        <ProtectedRoute path='/group' component={NavigationPage} auth={userLoggedIn || localAuth}/>
-        <ProtectedRoute path='/game' component={NavigationPage} auth={userLoggedIn || localAuth}/>
+        <ProtectedRoute path='/home' component={NavigationPage} auth={userLoggedIn}/>
+        <ProtectedRoute path='/watch' component={NavigationPage} auth={userLoggedIn}/>
+        <ProtectedRoute path='/marketplace' component={NavigationPage} auth={userLoggedIn}/>
+        <ProtectedRoute path='/group' component={NavigationPage} auth={userLoggedIn}/>
+        <ProtectedRoute path='/game' component={NavigationPage} auth={userLoggedIn}/>
         <PublicRoute exact path='/' component={LoginPage} auth={userLoggedIn || localAuth} redir='/home'/>
       </Switch>
     </ThemeProvider>

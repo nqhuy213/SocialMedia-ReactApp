@@ -41,7 +41,7 @@ function addNewPostSuccess(post){
 
 function updatePostSuccess(post) {
   return{
-    type: types.UPDATE_POST_SUCCESS,
+    type: types.UPDATE_NEWSFEED_POST_SUCCESS,
     payload: {post}
   }
 }
@@ -75,7 +75,7 @@ export function addNewPost(post) {
   }
 }
 
-export function updatePost(post) {
+export function updateNewsFeedPost(post) {
   return dispatch => {
     dispatch(updatePostSuccess(post))
   }

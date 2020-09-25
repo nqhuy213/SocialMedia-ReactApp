@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
 
 function PostItemList(props) {
-  const {items, likePost, commentPost, likeComment} = props
+  const {items, likePost, commentPost, likeComment, getMorePost} = props
 
   const itemsList = items.map((post) =>
     <div key={post._id} className='post-item-container'>
@@ -15,7 +15,7 @@ function PostItemList(props) {
   );
   return (
     <div className='post-list-wrapper'>
-      <InfiniteScroll bottomCallback={() => console.log('At the bottom')}>
+      <InfiniteScroll bottomCallback={getMorePost}>
        {itemsList}
       </InfiniteScroll>
     </div>

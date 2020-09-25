@@ -1,10 +1,11 @@
 import { useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { fetchNewsFeed, updatePost } from '../../redux/actions/newsFeed'
+import { fetchNewsFeed, fetchNewsFeedMore, updateNewsFeedPost } from '../../redux/actions/newsFeed'
 
 export default function usePosts() {
   const posts = useSelector(state => state.NewsFeed.data.posts.items)
   const socket = useSelector(state => state.Socket.socket)
+  const nextCount = useSelector(state => state.NewsFeed.data.posts.nextCount)
   const dispatch = useDispatch()
 
   const likePost = ({userId, postId}) => {
@@ -18,15 +19,20 @@ export default function usePosts() {
   const likeComment = ({userId, postId, commentId}) => {
     socket.emit('like_comment', {userId, postId, commentId})
   }
+
+  const getMorePost = () => {
+    // dispatch(fetchNewsFeedMore({nextCount}))
+    console.log('Get more post');
+  }
   
   useEffect(() => {
     dispatch(fetchNewsFeed())
     if(socket){
       socket.on('update_post', (post) => {
-        dispatch(updatePost(post))
+        dispatch(updateNewsFeedPost(post))
       })
     }
   },[socket, dispatch])
 
-  return {posts, likePost, commentPost, likeComment}
+  return {posts, likePost, commentPost, likeComment, getMorePost}
 }
