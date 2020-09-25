@@ -2,6 +2,7 @@ import React from 'react';
 import './PostItemList.scss';
 import PostItem from '../PostItem/PostItem';
 import PropTypes from 'prop-types'
+import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
 
 function PostItemList(props) {
   const {items, likePost, commentPost, likeComment} = props
@@ -10,10 +11,13 @@ function PostItemList(props) {
     <div key={post._id} className='post-item-container'>
       <PostItem post={post} likePost={likePost} commentPost={commentPost} likeComment={likeComment}/>
     </div>
+    
   );
   return (
     <div className='post-list-wrapper'>
-      {itemsList}
+      <InfiniteScroll bottomCallback={() => console.log('At the bottom')}>
+       {itemsList}
+      </InfiniteScroll>
     </div>
  )
 }
