@@ -18,7 +18,7 @@ export const LikeCountWrapper = styled.section`
   padding-right: 5px;
   border-radius: 15px;
   bottom: -8px ;
-  right: -8px
+  right: -8px;
 `;
 
 export const LikeCountLabel = styled.span`
@@ -41,7 +41,7 @@ export const CommentLikeAction = styled.div`
 `;
 
 export const CommentReplyAction = styled.div`
-  color: ${props => props.theme.colors.darkgray}
+  color: ${props => props.theme.colors.darkgray};
 `;
 
 export const CommentHolder = styled(Segment)`

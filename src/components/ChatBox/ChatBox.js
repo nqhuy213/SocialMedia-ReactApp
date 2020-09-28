@@ -7,6 +7,7 @@ import GrayHoverContainer from "../GrayHoverContainer/GrayHoverContainer";
 import CloseButton from "../CloseButton/CloseButton";
 import TextBox from "../TextBox/TextBox";
 import { Icon } from "semantic-ui-react";
+import ChatItem from "../ChatItem/ChatItem";
 
 const ImageIcon = styled(Icon)`
   box-shadow: none !important;
@@ -55,6 +56,12 @@ const ChatBoxFooter = styled.div`
   align-items: center;
 `;
 
+const ChatSection = styled.section`
+  height: 100%;
+  padding-right: 20px;
+  padding-left: 10px;
+  overflow:scroll;
+`
 export default function ChatBox(props) {
   const [text, setText] = useState("");
 
@@ -90,7 +97,28 @@ export default function ChatBox(props) {
           onClick={props.onClose}
         />
       </ChatBoxHeader>
-      
+      <ChatSection>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/><ChatItem isHost/>
+        <ChatItem isHost/>
+        <ChatItem isHost/>
+
+      </ChatSection>
       <ChatBoxFooter>
         <TextBox
           maxRows={5}
