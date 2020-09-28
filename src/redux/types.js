@@ -21,4 +21,5 @@ export const FETCH_USER = 'FETCH_USER'
 
 /**Chat actions */
 export const OPEN_CHAT = 'OPEN_CHAT'
+export const UPDATE_CHAT = 'UPDATE_CHAT'
 export const CLOSE_CHAT = 'CLOSE_CHAT'

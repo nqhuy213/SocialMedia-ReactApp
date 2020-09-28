@@ -13,7 +13,7 @@ import {
 } from "../../redux/actions/newsFeed";
 import ChatSection from "../../components/ChatSection/ChatSection";
 import styled from "styled-components";
-import { closeChat } from "../../redux/actions/chat";
+import { closeChat, updateChat } from "../../redux/actions/chat";
 
 export default function NavigationPage({ page }) {
   const [activePage, setActivePage] = useState(page);
@@ -36,6 +36,10 @@ export default function NavigationPage({ page }) {
       socket.on("friend_offline", ({ userId }) => {
         dispatch(deleteActiveFriend(userId));
       });
+
+      socket.on('update_inbox', ({inbox}) => {
+        dispatch(updateChat(inbox))
+      })
     }
   }, [socket]);
   const handleChangePage = (page) => {
@@ -65,6 +69,9 @@ export default function NavigationPage({ page }) {
     dispatch(closeChat(guest))
   }
   
+  const sendMessage = ({room, message}) => {
+    socket.emit('send_chat', ({room, message}))
+  }
   return (
     <Fragment>
       <NavigationBar
@@ -74,7 +81,7 @@ export default function NavigationPage({ page }) {
       <div className="page-container">{page}</div>
       {inboxes.length > 0 && (
         <ChatSectionContainer>
-          <ChatSection chats={inboxes} closeChatBox={closeChatBox}/>
+          <ChatSection chats={inboxes} closeChatBox={closeChatBox} sendMessage={sendMessage}/>
         </ChatSectionContainer>
       )}
     </Fragment>
