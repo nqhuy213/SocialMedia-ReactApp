@@ -56,16 +56,20 @@ export const CommentHolder = styled(Segment)`
   flex-direction: column !important;
   justify-content: center;
   width: fit-content;
+  resize: both;
+  max-width: 70%;
 `
 
 export const CommenterNameLabel = styled.span`
   font-weight: 600;
+
 `
 
 export const CommentDescriptionLabel = styled.span`
   font-size: 15px;
   line-height: 20px;
   word-spacing: 1px;
+  word-break: break-word;
 `
 export const CommentActionContainer = styled.div`
   display: flex;

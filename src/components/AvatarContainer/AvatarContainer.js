@@ -9,10 +9,16 @@ const AContainer = styled.div`
   margin-bottom: 5px;
   margin-top: 5px;
   position: relative;
-  
 `;
 
-export default function AvatarContainer({ src, name, online, meta, size }) {
+export default function AvatarContainer({
+  src,
+  name,
+  online,
+  meta,
+  size,
+  isAvatar,
+}) {
   return (
     <AContainer>
       <div className="avatar-img-container">
@@ -25,13 +31,16 @@ export default function AvatarContainer({ src, name, online, meta, size }) {
           className="avatar-img"
           size={size}
           circular
+          avatar={isAvatar}
         />
       </div>
       {online ? <span className="online-indicator"></span> : null}
-      <div className="avatar-infomation-container">
-        {name ? <span className="avatar-name-label">{name}</span> : null}
-        <span className="avatar-meta-label">{meta}</span>
-      </div>
+      {name || meta ? (
+        <div className="avatar-infomation-container">
+          {name ? <span className="avatar-name-label">{name}</span> : null}
+          <span className="avatar-meta-label">{meta}</span>
+        </div>
+      ) : null}
     </AContainer>
   );
 }

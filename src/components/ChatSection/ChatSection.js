@@ -21,6 +21,7 @@ export default function ChatSection(props) {
             room={inbox._id}
             host={inbox.host}
             guest={inbox.guest}
+            messages={inbox.messages}
             onClose={() => {
               props.closeChatBox(inbox.guest);
             }}

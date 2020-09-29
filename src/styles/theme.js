@@ -3,7 +3,7 @@ export default {
     primaryblue: "#1877f2",
     primaryblueHover: "#2271da",
     darkgray: "#606770",
-    lightgray: "#f0f2f5",
+    lightgray: "#edeff0",
     popupButtonBackground: "#e8eaeb",
     popupHoverBackground: "#e0e0e2",
     pageBackground: "#F2F3F5",

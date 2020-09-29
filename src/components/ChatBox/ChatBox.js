@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import AvatarContainer from "../AvatarContainer/AvatarContainer";
@@ -58,15 +58,15 @@ const ChatBoxFooter = styled.div`
 
 const ChatSection = styled.section`
   height: 100%;
-  padding-right: 20px;
+  padding-right: 15px;
   padding-left: 10px;
-  overflow:scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 `
 export default function ChatBox(props) {
   const [text, setText] = useState("");
 
   const handleOnChange = (e) => {
-    console.log(text);
     setText(e.target.value);
   };
   const onEnterPressed = (e) => {
@@ -98,26 +98,11 @@ export default function ChatBox(props) {
         />
       </ChatBoxHeader>
       <ChatSection>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/><ChatItem isHost/>
-        <ChatItem isHost/>
-        <ChatItem isHost/>
-
+        {props.messages.map((message) => {
+          var host;
+          (message.author === props.host._id) ? host = true : host = false
+          return <ChatItem key={message._id} host={host} text={message.text}/>
+        })}
       </ChatSection>
       <ChatBoxFooter>
         <TextBox
