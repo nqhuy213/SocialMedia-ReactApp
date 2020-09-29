@@ -10,18 +10,14 @@ function fetchNewsFeedBegin() {
 function fetchNewsFeedSucess(data) {
   return {
     type: types.FETCH_NEWSFEED_SUCCESS,
-    payload: {
-      result: data
-    }
+    payload: data
   }
 }
 
 function fetchNewsFeedMoreSuccess(data) {
   return {
     type: types.FETCH_NEWSFEED_MORE_SUCCESS,
-    payload: {
-      result: data
-    }
+    payload: data
   }
 }
 
@@ -49,8 +45,8 @@ export function fetchNewsFeed(){
   return dispatch => {
     dispatch(fetchNewsFeedBegin())
     return getPosts().then(
-      data => {
-        dispatch(fetchNewsFeedSucess(data))
+      res => {
+        dispatch(fetchNewsFeedSucess(res.data))
       }
     ).catch(error => {
       return dispatch(fetchNewsFeedFailure(error))

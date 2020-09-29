@@ -8,11 +8,11 @@ import { fetchActiveFriends, updateActiveFriend, deleteActiveFriend } from '../r
 import {getUserId} from '../utils/user'
 
 
-function ProtectedRoute({ component: Component, auth, redir, ...rest }) {
+function ProtectedRoute({ component: Component, auth, redir, page, ...rest }) {
   return (
       <Route {...rest} render={(props) => (
         auth === true
-          ? <Component page={rest.path.slice(1)} />
+          ? <Component page={page} activePage={rest.path.slice(1)} {...props}/>
           : <Redirect to={redir} />
       )} />
   )

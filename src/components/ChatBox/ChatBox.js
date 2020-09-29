@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import AvatarContainer from "../AvatarContainer/AvatarContainer";
@@ -8,6 +8,7 @@ import CloseButton from "../CloseButton/CloseButton";
 import TextBox from "../TextBox/TextBox";
 import { Icon } from "semantic-ui-react";
 import ChatItem from "../ChatItem/ChatItem";
+import InfiniteScroll from '../InfiniteScroll'
 
 const ImageIcon = styled(Icon)`
   box-shadow: none !important;
@@ -22,6 +23,8 @@ const ImageIcon = styled(Icon)`
 const FileInput = styled.input`
   display: none;
 `;
+
+const ChatItemContainer = styled.div``
 
 const ChatBoxWapprer = styled.section`
   background-color: white;
@@ -62,10 +65,11 @@ const ChatSection = styled.section`
   padding-left: 10px;
   overflow-x: hidden;
   overflow-y: scroll;
-`
+`;
 export default function ChatBox(props) {
   const [text, setText] = useState("");
-
+  const textBoxRef = useRef(null);
+  const chatSectionRef = useRef(null);
   const handleOnChange = (e) => {
     setText(e.target.value);
   };
@@ -76,11 +80,20 @@ export default function ChatBox(props) {
       if (text.trim() === "") return;
       var message = {
         author: props.host._id,
-        text: text
-      }
-      props.sendMessage({room: props.room, message})
+        text: text,
+      };
+      props.sendMessage({ room: props.room, message });
     }
   };
+
+  useEffect(() => {
+    if (textBoxRef.current) {
+      textBoxRef.current.focus();
+    }
+    if (chatSectionRef.current) {
+      chatSectionRef.current.scrollTop = chatSectionRef.current.scrollHeight;
+    }
+  }, []);
 
   return (
     <ChatBoxWapprer>
@@ -97,18 +110,25 @@ export default function ChatBox(props) {
           onClick={props.onClose}
         />
       </ChatBoxHeader>
-      <ChatSection>
-        {props.messages.map((message) => {
-          var host;
-          (message.author === props.host._id) ? host = true : host = false
-          return <ChatItem key={message._id} host={host} text={message.text}/>
-        })}
+      <ChatSection ref={chatSectionRef}>
+        <InfiniteScroll reverse bottomCallback={() => console.log('more chat')}>
+          {props.messages.map((message) => {
+            var host;
+            message.author === props.host._id ? (host = true) : (host = false);
+            return (
+              <ChatItemContainer key={message._id}>
+                <ChatItem  host={host} text={message.text} />
+              </ChatItemContainer>
+            );
+          })}
+        </InfiniteScroll>
       </ChatSection>
       <ChatBoxFooter>
         <TextBox
+          ref={textBoxRef}
           maxRows={5}
           rows={1}
-          backgroundColor="lightgray"
+          backgroundcolor="lightgray"
           placeholder="Aa"
           onKeyDown={onEnterPressed}
           onChange={handleOnChange}

@@ -6,6 +6,7 @@ const initialState = {
     posts:{
       items:[],
       nextCount:0,
+      hasMore: true
     },
     activeFriends: []
   },
@@ -29,6 +30,7 @@ export default function NewsFeed(state = initialState, action = {}){
           posts:{
             items: action.payload.result,
             nextCount: 1,
+            hasMore: action.payload.hasMore
           }
         }
       }
@@ -41,6 +43,7 @@ export default function NewsFeed(state = initialState, action = {}){
           posts:{
             items: [...state.data.posts.items, ...action.payload.result],
             nextCount: state.data.state.nextCount++,
+            hasMore: action.payload.hasMore
           }
         }
       }

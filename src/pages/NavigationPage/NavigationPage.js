@@ -14,14 +14,15 @@ import {
 import ChatSection from "../../components/ChatSection/ChatSection";
 import styled from "styled-components";
 import { closeChat, updateChat } from "../../redux/actions/chat";
+import { history } from "../../history";
 
-export default function NavigationPage({ page }) {
-  const [activePage, setActivePage] = useState(page);
+export default function NavigationPage({ activePage, page: Page }) {
   const socket = useSelector((state) => state.Socket.socket);
   const dispatch = useDispatch();
   const inboxes = useSelector((state) => state.Chat.inbox);
 
   useEffect(() => {
+    
     if (socket) {
       socket.emit("user_login", { userId: getUserId() });
       socket.on("user_info", (user) => {
@@ -37,26 +38,11 @@ export default function NavigationPage({ page }) {
         dispatch(deleteActiveFriend(userId));
       });
 
-      socket.on('update_inbox', ({inbox}) => {
-        dispatch(updateChat(inbox))
-      })
+      socket.on("update_inbox", ({ inbox }) => {
+        dispatch(updateChat(inbox));
+      });
     }
-  }, [socket]);
-  const handleChangePage = (page) => {
-    setActivePage(page);
-  };
-
-  switch (activePage) {
-    case "home":
-      page = <NewsFeedPage />;
-      break;
-    case "watch":
-      page = <WatchPage />;
-      break;
-    default:
-      page = <NewsFeedPage />;
-      break;
-  }
+  }, [socket, activePage]);
 
   const ChatSectionContainer = styled.div`
     position: fixed;
@@ -66,22 +52,24 @@ export default function NavigationPage({ page }) {
   `;
 
   const closeChatBox = (guest) => {
-    dispatch(closeChat(guest))
-  }
-  
-  const sendMessage = ({room, message}) => {
-    socket.emit('send_chat', ({room, message}))
-  }
+    dispatch(closeChat(guest));
+  };
+
+  const sendMessage = ({ room, message }) => {
+    socket.emit("send_chat", { room, message });
+  };
+
   return (
     <Fragment>
-      <NavigationBar
-        activePage={activePage}
-        handleChangePage={handleChangePage}
-      />
-      <div className="page-container">{page}</div>
+      <NavigationBar activePage={history.location.pathname.slice(1)} />
+      <div className="page-container"><Page/></div>
       {inboxes.length > 0 && (
         <ChatSectionContainer>
-          <ChatSection chats={inboxes} closeChatBox={closeChatBox} sendMessage={sendMessage}/>
+          <ChatSection
+            chats={inboxes}
+            closeChatBox={closeChatBox}
+            sendMessage={sendMessage}
+          />
         </ChatSectionContainer>
       )}
     </Fragment>

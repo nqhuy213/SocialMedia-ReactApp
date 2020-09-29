@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react';
 import PublicRoute from './routes/PublicRoute';
 import ProtectedRoute from './routes/ProtectedRoute'
 import LoginPage from './pages/LoginPage/LoginPage';
-import { Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import NavigationPage from './pages/NavigationPage/NavigationPage';
 import {getToken} from './utils/token'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUser, loginSuccess } from './redux/actions/auth';
+import { loginSuccess } from './redux/actions/auth';
 import { openNewSocket } from './redux/actions/socket';
-import {fetchActiveFriends, updateActiveFriend, deleteActiveFriend} from './redux/actions/newsFeed'
-import { getUserId } from './utils/user';
 import { ThemeProvider, withTheme } from 'styled-components';
 import theme from './styles/theme';
-import TextBox from './components/TextBox/TextBox';
-
+import { history } from './history';
+import NewsFeedPage from './pages/NewsFeedPage/NewsFeedPage';
+import WatchPage from './pages/WatchPage/WatchPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+ 
 
 const token = getToken('token')
 
@@ -35,13 +36,14 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Switch>
-        <ProtectedRoute path='/home' component={NavigationPage} auth={userLoggedIn}/>
-        <ProtectedRoute path='/watch' component={NavigationPage} auth={userLoggedIn}/>
-        <ProtectedRoute path='/marketplace' component={NavigationPage} auth={userLoggedIn}/>
-        <ProtectedRoute path='/group' component={NavigationPage} auth={userLoggedIn}/>
-        <ProtectedRoute path='/game' component={NavigationPage} auth={userLoggedIn}/>
-        <PublicRoute exact path='/' component={LoginPage} auth={userLoggedIn || localAuth} redir='/home'/>
+        <ProtectedRoute path='/home' component={NavigationPage} page={NewsFeedPage} activePage='home' auth={userLoggedIn} redir='/'/>
+        <ProtectedRoute path='/watch' component={NavigationPage} page={WatchPage} activePage='watch' auth={userLoggedIn} redir='/'/>
+        <ProtectedRoute path='/marketplace' component={NavigationPage} page={NewsFeedPage} activePage='marketplace' auth={userLoggedIn} redir='/'/>
+        <ProtectedRoute path='/group' component={NavigationPage} page={NewsFeedPage} activePage='group' auth={userLoggedIn} redir='/'/>
+        <ProtectedRoute path='/game' component={NavigationPage} page={NewsFeedPage} activePage='game' auth={userLoggedIn} redir='/'/>
+        <ProtectedRoute path='/:userId' component={ProfilePage} auth={userLoggedIn} redir='/'/>
       </Switch>
+      <Route exact  component={LoginPage}/>
     </ThemeProvider>
   );
 }

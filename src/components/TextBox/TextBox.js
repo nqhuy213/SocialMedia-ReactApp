@@ -36,9 +36,9 @@ const StyledTextBox = styled(
   }
 `
 
-function TextBox(props) {
+const TextBox = React.forwardRef((props, ref) => {
   const {
-    backgroundColor,
+    backgroundcolor,
     width,
     rows,
     className,
@@ -47,24 +47,26 @@ function TextBox(props) {
   } = props
 
   return (
-      <StyledSegment color={backgroundColor} fluid={fluid}>
+      <StyledSegment color={backgroundcolor} fluid={fluid}>
         <StyledTextBox
-          color={backgroundColor}
+          as={TextareaAutosize}
+          color={backgroundcolor}
           className={className}
           width={width}
           rows={rows || 1}
           maxRows={maxRows}
+          ref={ref}
           {...props}
         />
       </StyledSegment>
   )
-}
+})
 
 TextBox.propTypes = {
   /**
    * A textbox can have different background colors.
    */
-  backgroundColor: PropTypes.oneOf([
+  backgroundcolor: PropTypes.oneOf([
     'lightgray',
     'lightblue',
     'darkblue',
@@ -97,7 +99,7 @@ TextBox.propTypes = {
 
 TextBox.defaultProps = {
   width: '200px',
-  backgroundColor: 'lightgray'
+  backgroundcolor: 'lightgray'
 }
 
 export default TextBox

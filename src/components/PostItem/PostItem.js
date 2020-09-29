@@ -63,8 +63,8 @@ export default function PostItem(props) {
         meta={moment(post.createdAt).fromNow()}
       />
       <div className="post-description-container">{post.description}</div>
-      {post.imageSrc ? (
-        <Image className="post-image-wrapper" src={post.imageSrc} />
+      {post.imageURL ? (
+        <Image className="post-image-wrapper" src={post.imageURL} />
       ) : null}
       <div className="post-like-number">
         <div id="post-like-label">

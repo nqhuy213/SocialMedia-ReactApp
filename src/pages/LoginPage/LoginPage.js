@@ -1,11 +1,13 @@
-import React, {useState, Fragment} from 'react'
+import React, {useState, Fragment, useEffect} from 'react'
 import LoginForm from './LoginForm/LoginForm'
 import RegisterForm from './RegisterForm/RegisterForm'
 import { Modal } from 'semantic-ui-react'
 import ChatBox from '../../components/ChatBox/ChatBox'
+import { getToken } from '../../utils/token'
+import { Redirect } from 'react-router-dom'
 
 export default function LoginPage() {
-
+  const token = getToken('token')
   const [state, setState] = useState(
     {
       registerForm: false
@@ -15,7 +17,10 @@ export default function LoginPage() {
   const closeRegisterForm = () => {
     setState({...state, registerForm:false})
   }
-  
+
+  if(token){
+    return <Redirect to='home'/>
+  }
   return (
     <Fragment>
       <div className='login-form-container'>

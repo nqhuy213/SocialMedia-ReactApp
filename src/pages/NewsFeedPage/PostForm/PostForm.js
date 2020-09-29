@@ -66,16 +66,18 @@ export default function PostForm({closePostForm, user}) {
   };
 
   const handleOnSubmit = async () => {
-    // let imageURL
-    // if(postImageFile){
-    //   var formData = new FormData
-    //   formData.append('image', postImageFile)
-    //   const result = await uploadImage(FormData)
-    // }
-    
-    const result = await postPost({description: postDescription});
-    if (result.success) {
-      dispatch(addNewPost(result.data));
+    var imageURL
+    if(postImageFile){
+      var formData = new FormData
+      formData.append('image', postImageFile)
+      const res = await uploadImage(formData)
+      if(res.success){
+        imageURL = `${process.env.REACT_APP_API_URL}/${res.data.image.filename}`
+      }
+    }
+    const res = await postPost({description: postDescription, imageURL: imageURL});
+    if (res.success) {
+      dispatch(addNewPost(res.data.result));
       closePostForm();
     } else {
       // TODO: handle failure

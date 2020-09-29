@@ -18,17 +18,27 @@ export default function InfiniteScroll(props) {
   return (
     <Fragment>
       {React.Children.map(props.children, (child, i) => {
-        if(React.Children.count(props.children) === i + 1) {
-          return React.cloneElement(child, {ref})
+        if(props.reverse){
+          if(i == 0) {
+            return React.cloneElement(child, {ref})
+          }else{
+            return child
+          }
         }else{
-          return child
+          if(React.Children.count(props.children) === i + 1) {
+            return React.cloneElement(child, {ref})
+          }else{
+            return child
+          }
         }
+        
       })}
     </Fragment>
   )
 }
 
 InfiniteScroll.propTypes = {
+  reverse: PropTypes.bool,
   children: PropTypes.node.isRequired,
   bottomCallback: PropTypes.func.isRequired,
 };

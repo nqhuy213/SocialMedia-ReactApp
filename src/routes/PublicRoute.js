@@ -4,7 +4,6 @@ import {getToken } from '../utils/token'
 
 
 export default function PublicRoute({ component: Component, auth, redir, ...rest }) {
-  
   return (
       <Route {...rest} render={(props) => (
         auth === false

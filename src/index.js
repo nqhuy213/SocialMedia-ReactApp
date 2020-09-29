@@ -4,7 +4,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css';
 import {Provider} from 'react-redux';
-import {Router} from 'react-router-dom';
+import {BrowserRouter, Router} from 'react-router-dom';
 import {history} from './history';
 
 import './index.scss';
@@ -15,9 +15,9 @@ import theme from './styles/theme';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
+    <BrowserRouter history={history}>
         <App/>
-    </Router>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

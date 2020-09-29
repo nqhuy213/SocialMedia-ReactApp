@@ -1,19 +1,19 @@
-import React, {useState, Fragment} from 'react';
-import './NewsFeedPage.scss';
-import AskPostBox from '../../components/AskPostBox/AskPostBox';
-import {Modal} from 'semantic-ui-react';
-import PostForm from './PostForm/PostForm';
-import PostItemList from '../../components/PostItemList/PostItemList';
-import usePosts from './_usePosts';
-import useActiveFriends from './_useActiveFriends';
-import ActiveUserBar from './ActiveUserBar/ActiveUserBar';
-import { useSelector } from 'react-redux';
-
+import React, { useState, Fragment } from "react";
+import "./NewsFeedPage.scss";
+import AskPostBox from "../../components/AskPostBox/AskPostBox";
+import { Modal } from "semantic-ui-react";
+import PostForm from "./PostForm/PostForm";
+import PostItemList from "../../components/PostItemList/PostItemList";
+import usePosts from "./_usePosts";
+import useActiveFriends from "./_useActiveFriends";
+import ActiveUserBar from "./ActiveUserBar/ActiveUserBar";
+import { useSelector } from "react-redux";
+import NavigationBar from "../NavigationPage/NavigationBar/NavigationBar";
 export default function NewsFeedPage() {
-  const {activeFriends} = useActiveFriends();
-  const {posts, likePost, commentPost, likeComment, getMorePost} = usePosts();
+  const { activeFriends } = useActiveFriends();
+  const { posts, likePost, commentPost, likeComment, getMorePost } = usePosts();
   const [openPostForm, setOpenPostForm] = useState(false);
-  const user = useSelector(state => state.Auth.user)
+  const user = useSelector((state) => state.Auth.user);
   return (
     <Fragment>
       <div className="page-container news-feed-page">
