@@ -35,21 +35,10 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {/* <Switch>
-        <PublicRoute exact path='/' auth={userLoggedIn || localAuth} redir='/home' component={LoginPage}/>
-        <ProtectedRoute exact path='/home' component={NavigationPage} page={NewsFeedPage} activePage='home' auth={userLoggedIn} redir='/'/>
-        <ProtectedRoute exact path='/watch' component={NavigationPage} page={WatchPage} activePage='watch' auth={userLoggedIn} redir='/'/>
-        <ProtectedRoute exact path='/marketplace' component={NavigationPage} page={NewsFeedPage} activePage='marketplace' auth={userLoggedIn} redir='/'/>
-        <ProtectedRoute exact path='/group' component={NavigationPage} page={NewsFeedPage} activePage='group' auth={userLoggedIn} redir='/'/>
-        <ProtectedRoute exact path='/game' component={NavigationPage} page={NewsFeedPage} activePage='game' auth={userLoggedIn} redir='/'/>
-        <ProtectedRoute exact path='/:userId' component={ProfilePage} auth={userLoggedIn} redir='/'/>
-      </Switch> */}
+      
       <Switch>
         <Route exact path='/'>
-          {!(userLoggedIn || localAuth) ? <LoginPage/> : <Redirect to='/home'/>}
-        </Route>
-        <Route exact path='/home'>
-          {localAuth ? <NavigationPage activePage='home' page={NewsFeedPage}/> : <Redirect to='/'/>}
+          {!(userLoggedIn||localAuth) ? <LoginPage/> : <NavigationPage activePage='home' page={NewsFeedPage}/>}
         </Route>
         <Route exact path='/watch'>
           {localAuth ? <NavigationPage activePage='watch' page={WatchPage}/> : <Redirect to='/'/>}

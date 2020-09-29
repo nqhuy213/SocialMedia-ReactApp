@@ -33,6 +33,7 @@ export default function ActiveUserBar({activeUsers}) {
         }else{
           /** Handle group chat */ 
         }
+        if(guest === undefined) guest = host
         chat.host = host
         chat.guest = guest
         dispatch(openChat(chat))

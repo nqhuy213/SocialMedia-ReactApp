@@ -7,7 +7,6 @@ import { getToken } from '../../utils/token'
 import { Redirect } from 'react-router-dom'
 
 export default function LoginPage() {
-  const token = getToken('token')
   const [state, setState] = useState(
     {
       registerForm: false
@@ -18,9 +17,6 @@ export default function LoginPage() {
     setState({...state, registerForm:false})
   }
 
-  if(token){
-    return <Redirect to='home'/>
-  }
   return (
     <Fragment>
       <div className='login-form-container'>

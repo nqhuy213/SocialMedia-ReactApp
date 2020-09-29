@@ -12,7 +12,7 @@ export default function TabBar({ activePage, handleChangePage }) {
   useEffect(() => setSelectedTab({[activePage]: true}),[activePage])
   return (
     <Fragment>
-      <Link to="/home" className='link-button'>
+      <Link to="/" className='link-button'>
         <Button
           icon
           className={
