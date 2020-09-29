@@ -16,13 +16,12 @@ import styled from "styled-components";
 import { closeChat, updateChat } from "../../redux/actions/chat";
 import { history } from "../../history";
 
-export default function NavigationPage({ activePage, page: Page }) {
+export default function NavigationPage({page: Page, activePage }) {
   const socket = useSelector((state) => state.Socket.socket);
   const dispatch = useDispatch();
   const inboxes = useSelector((state) => state.Chat.inbox);
 
   useEffect(() => {
-    
     if (socket) {
       socket.emit("user_login", { userId: getUserId() });
       socket.on("user_info", (user) => {
@@ -42,7 +41,7 @@ export default function NavigationPage({ activePage, page: Page }) {
         dispatch(updateChat(inbox));
       });
     }
-  }, [socket, activePage]);
+  }, [socket]);
 
   const ChatSectionContainer = styled.div`
     position: fixed;
@@ -61,7 +60,7 @@ export default function NavigationPage({ activePage, page: Page }) {
 
   return (
     <Fragment>
-      <NavigationBar activePage={history.location.pathname.slice(1)} />
+      <NavigationBar activePage={activePage} />
       <div className="page-container"><Page/></div>
       {inboxes.length > 0 && (
         <ChatSectionContainer>
