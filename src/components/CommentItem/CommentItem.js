@@ -36,7 +36,7 @@ export default function CommentItem(props) {
   }, [props.isLiked]);
   return (
     <CommentItemWrapper>
-      <AvatarContainer src="" />
+      <AvatarContainer src="" userId={comment.postedBy._id}/>
       <div>
         <CommentHolder>
           <CommenterNameLabel>

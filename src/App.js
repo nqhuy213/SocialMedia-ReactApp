@@ -52,6 +52,9 @@ function App() {
         <Route exact path='/game'>
           {localAuth ? <NavigationPage activePage='game' page={NewsFeedPage}/> : <Redirect to='/'/>}
         </Route>
+        <Route path='/profile/:userId'>
+          {localAuth ? <NavigationPage page={ProfilePage}/> : <Redirect to='/'/>}
+        </Route>
       </Switch>
     </ThemeProvider>
   );

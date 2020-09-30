@@ -61,6 +61,7 @@ export default function PostItem(props) {
         src="https://react.semantic-ui.com/images/wireframe/square-image.png"
         name={post.postedBy.firstName + " " + post.postedBy.lastName}
         meta={moment(post.createdAt).fromNow()}
+        userId={post.postedBy._id}
       />
       <div className="post-description-container">{post.description}</div>
       {post.imageURL ? (

@@ -102,6 +102,7 @@ export default function ChatBox(props) {
           <AvatarContainer
             size="mini"
             name={`${props.guest.firstName} ${props.guest.lastName}`}
+            userId={props.guest._id}
           />
         </GrayHoverContainer>
         <CustomCloseButton
