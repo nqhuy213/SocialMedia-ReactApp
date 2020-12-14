@@ -16,7 +16,14 @@ import styled from "styled-components";
 import { closeChat, updateChat } from "../../redux/actions/chat";
 import { history } from "../../history";
 
-export default function NavigationPage({page: Page, activePage }) {
+const ChatSectionContainer = styled.div`
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  z-index: 10;
+`;
+
+export default function NavigationPage({ page: Page, activePage }) {
   const socket = useSelector((state) => state.Socket.socket);
   const dispatch = useDispatch();
   const inboxes = useSelector((state) => state.Chat.inbox);
@@ -43,13 +50,6 @@ export default function NavigationPage({page: Page, activePage }) {
     }
   }, [socket]);
 
-  const ChatSectionContainer = styled.div`
-    position: fixed;
-    right: 0px;
-    bottom: 0px;
-    z-index: 10;
-  `;
-
   const closeChatBox = (guest) => {
     dispatch(closeChat(guest));
   };
@@ -61,7 +61,9 @@ export default function NavigationPage({page: Page, activePage }) {
   return (
     <Fragment>
       <NavigationBar activePage={activePage} />
-      <div className="page-container"><Page/></div>
+      <div className="page-container">
+        <Page />
+      </div>
       {inboxes.length > 0 && (
         <ChatSectionContainer>
           <ChatSection

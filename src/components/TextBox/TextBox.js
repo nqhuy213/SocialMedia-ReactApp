@@ -1,8 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyledSegment } from '../../styles/shared'
 import styled, {css} from 'styled-components'
 import TextareaAutosize from 'react-autosize-textarea/lib'
+import { Button, Icon } from 'semantic-ui-react'
+
+
+export const CustomSegment = styled.section`
+  padding-left: 10px;
+  padding-right: 0px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: ${(props) => {
+    return props.theme.colors[props.color]
+  }};
+  border-radius: 15px;
+  width: ${(props) => !props.fluid && 'fit-content'};
+  height: 'fit-content';
+  display: flex;
+  align-items:center;
+`
 
 const StyledTextBox = styled(
   ({ backgroundColor, ...props }) => (
@@ -35,6 +53,18 @@ const StyledTextBox = styled(
     outline: none;
   }
 `
+const CustomEmojiIcon = styled(Icon)`
+  color: ${props => props.theme.colors.primaryblue};
+`
+const CustomEmojiButton = styled(Button)`
+  margin: 0px !important;
+  background-color: transparent !important;
+  padding: 0.5rem !important;
+  :hover{
+    background-color:  rgba(204, 204, 204, 0.2) !important;
+    cursor: pointer;
+  }
+`
 
 const TextBox = React.forwardRef((props, ref) => {
   const {
@@ -46,8 +76,10 @@ const TextBox = React.forwardRef((props, ref) => {
     fluid
   } = props
 
+  
+
   return (
-      <StyledSegment color={backgroundcolor} fluid={fluid}>
+      <CustomSegment color={backgroundcolor} fluid={fluid}>
         <StyledTextBox
           as={TextareaAutosize}
           color={backgroundcolor}
@@ -58,7 +90,10 @@ const TextBox = React.forwardRef((props, ref) => {
           ref={ref}
           {...props}
         />
-      </StyledSegment>
+        <CustomEmojiButton icon circular onClick={props.handleEmojiButtonClick}>
+          <CustomEmojiIcon name='smile' size='large'/>
+        </CustomEmojiButton>
+      </CustomSegment>
   )
 })
 

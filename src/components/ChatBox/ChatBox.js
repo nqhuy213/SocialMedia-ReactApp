@@ -9,6 +9,8 @@ import TextBox from "../TextBox/TextBox";
 import { Icon } from "semantic-ui-react";
 import ChatItem from "../ChatItem/ChatItem";
 import InfiniteScroll from '../InfiniteScroll'
+import Picker from 'emoji-picker-react';
+import OutsideAlerter from "../OursideAlerter/OutsideAlerter";
 
 const ImageIcon = styled(Icon)`
   box-shadow: none !important;
@@ -66,8 +68,21 @@ const ChatSection = styled.section`
   overflow-x: hidden;
   overflow-y: scroll;
 `;
+
+const EmojiPickerContainer = styled.div`
+  position:absolute;
+  z-index: 100 !important;
+  top: 50px;
+  left: -10px;
+`
+
+const CustomEmojiPicker = styled(Picker)`
+  height:300px !important;
+`
+
 export default function ChatBox(props) {
   const [text, setText] = useState("");
+  const [emojiPicker, setEmojiPicker] = useState(false)
   const textBoxRef = useRef(null);
   const chatSectionRef = useRef(null);
   const handleOnChange = (e) => {
@@ -82,9 +97,23 @@ export default function ChatBox(props) {
         author: props.host._id,
         text: text,
       };
+      setText("")
       props.sendMessage({ room: props.room, message });
+      // if (chatSectionRef.current) {
+      //   console.log(chatSectionRef.current)
+      //   chatSectionRef.current.scrollTop = chatSectionRef.current.scrollHeight;
+      // }
     }
   };
+
+  const handleChooseEmoji = (e, emojiObject) => {
+    setText(text + emojiObject.emoji)
+  }
+
+  const toggleEmojiPicker = (e) => {
+    textBoxRef.current.blur()
+    setEmojiPicker(!emojiPicker)
+  }
 
   useEffect(() => {
     if (textBoxRef.current) {
@@ -93,10 +122,11 @@ export default function ChatBox(props) {
     if (chatSectionRef.current) {
       chatSectionRef.current.scrollTop = chatSectionRef.current.scrollHeight;
     }
-  }, []);
+  }, [onEnterPressed]);
 
   return (
     <ChatBoxWapprer>
+      
       <ChatBoxHeader>
         <GrayHoverContainer fitted>
           <AvatarContainer
@@ -112,6 +142,19 @@ export default function ChatBox(props) {
         />
       </ChatBoxHeader>
       <ChatSection ref={chatSectionRef}>
+        {
+          emojiPicker ? 
+            <OutsideAlerter onOutsideClicked={toggleEmojiPicker}>
+              <EmojiPickerContainer>
+                <Picker 
+                  onEmojiClick = {handleChooseEmoji}
+                  disableSearchBar={true}
+                />
+              </EmojiPickerContainer>
+            </OutsideAlerter>
+            
+          :null
+        }
         <InfiniteScroll reverse bottomCallback={() => console.log('more chat')}>
           {props.messages.map((message) => {
             var host;
@@ -134,7 +177,9 @@ export default function ChatBox(props) {
           onKeyDown={onEnterPressed}
           onChange={handleOnChange}
           value={text}
+          handleEmojiButtonClick={toggleEmojiPicker}
         />
+        
         <ImageIcon name="images" size="large" circular />
       </ChatBoxFooter>
     </ChatBoxWapprer>
