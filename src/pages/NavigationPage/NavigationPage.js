@@ -20,6 +20,8 @@ export default function NavigationPage({page: Page, activePage }) {
   const socket = useSelector((state) => state.Socket.socket);
   const dispatch = useDispatch();
   const inboxes = useSelector((state) => state.Chat.inbox);
+  const user = useSelector((state) => state.Auth.user)
+
 
   useEffect(() => {
     if (socket) {
@@ -60,7 +62,7 @@ export default function NavigationPage({page: Page, activePage }) {
 
   return (
     <Fragment>
-      <NavigationBar activePage={activePage} />
+      <NavigationBar activePage={activePage} user={user}/>
       <div className="page-container"><Page/></div>
       {inboxes.length > 0 && (
         <ChatSectionContainer>
