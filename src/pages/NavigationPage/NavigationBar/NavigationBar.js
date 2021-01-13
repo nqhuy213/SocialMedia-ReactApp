@@ -30,13 +30,7 @@ const AvatarButton = styled.div`
 
 export default function NavigatioBar({activePage, handleChangePage}) {
   const user = useSelector((state) => state.Auth.user)
-  const [profilePage, setProfilePage] = useState()
 
-  const handleOnClickProfileButton = (e) => {
-    
-    setProfilePage(true)
-
-  }
 
   return (
     <div className="navbar-container">
@@ -50,10 +44,16 @@ export default function NavigatioBar({activePage, handleChangePage}) {
       <div className="right-flex">
         
         {user ? 
-          <AvatarButton icon labelPosition="left" circular onClick={handleOnClickProfileButton} selected={profilePage}>
-            <Image src={"https://react.semantic-ui.com/images/wireframe/square-image.png"} avatar/>
-            {user.firstName} 
-          </AvatarButton>
+          <a href={`/profile/${user.userId}`}>
+            <AvatarButton 
+                icon 
+                labelPosition="left" 
+                circular 
+                selected={activePage === 'profile'}>
+                <Image src={"https://react.semantic-ui.com/images/wireframe/square-image.png"} avatar/>
+                {user.firstName} 
+              </AvatarButton>
+          </a>
           :
           null
         }

@@ -31,7 +31,7 @@ export default function AccountPanel(props) {
   return (
     <Fragment>
       <GrayHoverContainer>
-        <AvatarContainer meta="View your profile" size="tiny" />
+        <AvatarContainer meta="View your profile" size="tiny" userId={user._id}/>
       </GrayHoverContainer>
       <Divider className="custom-divider" />
       <PanelButton
