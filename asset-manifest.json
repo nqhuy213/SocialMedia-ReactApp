@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/SocialMedia-ReactApp/static/css/main.f192fcb0.chunk.css",
-    "main.js": "/SocialMedia-ReactApp/static/js/main.4e7745d8.chunk.js",
-    "main.js.map": "/SocialMedia-ReactApp/static/js/main.4e7745d8.chunk.js.map",
+    "main.js": "/SocialMedia-ReactApp/static/js/main.d3b318c9.chunk.js",
+    "main.js.map": "/SocialMedia-ReactApp/static/js/main.d3b318c9.chunk.js.map",
     "runtime-main.js": "/SocialMedia-ReactApp/static/js/runtime-main.8ce4c00c.js",
     "runtime-main.js.map": "/SocialMedia-ReactApp/static/js/runtime-main.8ce4c00c.js.map",
     "static/css/2.5564b9d4.chunk.css": "/SocialMedia-ReactApp/static/css/2.5564b9d4.chunk.css",
-    "static/js/2.38ab6a6d.chunk.js": "/SocialMedia-ReactApp/static/js/2.38ab6a6d.chunk.js",
-    "static/js/2.38ab6a6d.chunk.js.map": "/SocialMedia-ReactApp/static/js/2.38ab6a6d.chunk.js.map",
+    "static/js/2.546c5c53.chunk.js": "/SocialMedia-ReactApp/static/js/2.546c5c53.chunk.js",
+    "static/js/2.546c5c53.chunk.js.map": "/SocialMedia-ReactApp/static/js/2.546c5c53.chunk.js.map",
     "index.html": "/SocialMedia-ReactApp/index.html",
-    "precache-manifest.059834170df30e9f58de38e82cd11030.js": "/SocialMedia-ReactApp/precache-manifest.059834170df30e9f58de38e82cd11030.js",
+    "precache-manifest.55072433fbaf68c595a029b6543ddc84.js": "/SocialMedia-ReactApp/precache-manifest.55072433fbaf68c595a029b6543ddc84.js",
     "service-worker.js": "/SocialMedia-ReactApp/service-worker.js",
     "static/css/2.5564b9d4.chunk.css.map": "/SocialMedia-ReactApp/static/css/2.5564b9d4.chunk.css.map",
     "static/css/main.f192fcb0.chunk.css.map": "/SocialMedia-ReactApp/static/css/main.f192fcb0.chunk.css.map",
-    "static/js/2.38ab6a6d.chunk.js.LICENSE.txt": "/SocialMedia-ReactApp/static/js/2.38ab6a6d.chunk.js.LICENSE.txt",
+    "static/js/2.546c5c53.chunk.js.LICENSE.txt": "/SocialMedia-ReactApp/static/js/2.546c5c53.chunk.js.LICENSE.txt",
     "static/media/semantic.min.css": "/SocialMedia-ReactApp/static/media/outline-icons.ef60a4f6.woff",
     "static/media/logo.png": "/SocialMedia-ReactApp/static/media/logo.43f9ef05.png"
   },
   "entrypoints": [
     "static/js/runtime-main.8ce4c00c.js",
     "static/css/2.5564b9d4.chunk.css",
-    "static/js/2.38ab6a6d.chunk.js",
+    "static/js/2.546c5c53.chunk.js",
     "static/css/main.f192fcb0.chunk.css",
-    "static/js/main.4e7745d8.chunk.js"
+    "static/js/main.d3b318c9.chunk.js"
   ]
 }
