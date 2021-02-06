@@ -90,7 +90,7 @@ const TextBox = React.forwardRef((props, ref) => {
           ref={ref}
           {...props}
         />
-        <CustomEmojiButton icon circular onClick={props.handleEmojiButtonClick}>
+        <CustomEmojiButton icon circular onClick={props.handleemojibuttonclick}>
           <CustomEmojiIcon name='smile' size='large'/>
         </CustomEmojiButton>
       </CustomSegment>

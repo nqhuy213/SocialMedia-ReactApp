@@ -177,7 +177,7 @@ export default function ChatBox(props) {
           onKeyDown={onEnterPressed}
           onChange={handleOnChange}
           value={text}
-          handleEmojiButtonClick={toggleEmojiPicker}
+          handleemojibuttonclick={toggleEmojiPicker}
         />
         
         <ImageIcon name="images" size="large" circular />

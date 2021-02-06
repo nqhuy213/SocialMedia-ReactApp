@@ -9,6 +9,7 @@ import useActiveFriends from "./_useActiveFriends";
 import ActiveUserBar from "./ActiveUserBar/ActiveUserBar";
 import { useSelector } from "react-redux";
 import NavigationBar from "../NavigationPage/NavigationBar/NavigationBar";
+
 export default function NewsFeedPage() {
   const { activeFriends } = useActiveFriends();
   const { posts, likePost, commentPost, likeComment, getMorePost } = usePosts();
@@ -37,7 +38,6 @@ export default function NewsFeedPage() {
         </div>
       </div>
       <Modal
-        className="post-form-modal"
         basic
         size="tiny"
         dimmer="inverted"

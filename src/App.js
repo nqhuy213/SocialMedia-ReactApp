@@ -40,16 +40,16 @@ function App() {
         <Route exact path='/'>
           {!(userLoggedIn||localAuth) ? <LoginPage/> : <NavigationPage activePage='home' page={NewsFeedPage}/>}
         </Route>
-        <Route exact path='/watch'>
+        <Route path='/watch'>
           {localAuth ? <NavigationPage activePage='watch' page={WatchPage}/> : <Redirect to='/'/>}
         </Route>
-        <Route exact path='/marketplace'>
+        <Route path='/marketplace'>
           {localAuth ? <NavigationPage activePage='marketplace' page={NewsFeedPage}/> : <Redirect to='/'/>}
         </Route>
-        <Route exact path='/group'>
+        <Route path='/group'>
           {localAuth ? <NavigationPage activePage='group' page={NewsFeedPage}/> : <Redirect to='/'/>}
         </Route>
-        <Route exact path='/game'>
+        <Route path='/game'>
           {localAuth ? <NavigationPage activePage='game' page={NewsFeedPage}/> : <Redirect to='/'/>}
         </Route>
         <Route path='/profile/:userId'>

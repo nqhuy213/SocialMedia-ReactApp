@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useRef } from "react";
 import PropTypes from "prop-types";
 import { Button, Icon, Image } from "semantic-ui-react";
 import styled from "styled-components";
@@ -22,10 +22,25 @@ const EditProfileImageButton = styled(Button)`
 const ProfileImage = styled(Image)`
   border: 5px white solid;
   margin: 0 !important;
+  width: 150px !important;
+  height: 150px !important;
 `;
 
+const ProfileImageInput = styled.input `
+  display: none
+`
 
 export default function ProfilePicture(props) {
+
+  const imageInputRef = useRef(null)
+
+  const handleImageChange = (e) => {
+    props.handleProfileImageChosen()
+  }
+
+  const clickImageInput = (e) => {
+    imageInputRef.current.click()
+  }
   return (
     <ProfileImageWrapper>
       <ProfileImage
@@ -36,9 +51,17 @@ export default function ProfilePicture(props) {
         size="small"
         circular
       />
-      <EditProfileImageButton circular icon>
-        <Icon name="camera" />
-      </EditProfileImageButton>
+      {props.auth == 'w' ? 
+        <>
+          <EditProfileImageButton circular icon onClick={props.openProfileImageForm}>
+            <Icon name="camera" />
+          </EditProfileImageButton> 
+          <ProfileImageInput type='file' name='img' id='img' accept='image/*' ref={imageInputRef} onChange={handleImageChange}/>
+        </> 
+          : null
+
+      }
+      
       
     </ProfileImageWrapper>
   );

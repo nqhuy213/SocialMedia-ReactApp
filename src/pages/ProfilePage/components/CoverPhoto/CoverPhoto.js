@@ -26,10 +26,16 @@ export default function CoverPhoto(props) {
   return (
     <CoverImageWrapper>
       <CoverImage rounded src={props.src || "https://react.semantic-ui.com/images/wireframe/square-image.png"}/>
-      <EditCoverButton >
-        <Icon name='camera'/>
-        Edit Cover Photo
-      </EditCoverButton>
+
+      {
+        props.auth == "w" ?
+          <EditCoverButton >
+            <Icon name='camera'/>
+              Edit Cover Photo
+          </EditCoverButton>
+        : null
+      }
+      
     </CoverImageWrapper>
   )
 }

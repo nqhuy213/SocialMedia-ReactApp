@@ -56,7 +56,7 @@ export default function TabBar({ activePage, handleChangePage }) {
         </Button>
       </Link>
 
-      <Link to="marketplace" className='link-button'>
+      <Link to="/marketplace" className='link-button'>
         <Button
           icon
           className={
@@ -79,7 +79,7 @@ export default function TabBar({ activePage, handleChangePage }) {
         </Button>
       </Link>
 
-      <Link to="group" className='link-button'>
+      <Link to="/group" className='link-button'>
         <Button
           icon
           className={
@@ -102,7 +102,7 @@ export default function TabBar({ activePage, handleChangePage }) {
         </Button>
       </Link>
 
-      <Link to="game" className='link-button'>
+      <Link to="/game" className='link-button'>
         <Button
           icon
           className={

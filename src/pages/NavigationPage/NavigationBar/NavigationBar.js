@@ -44,7 +44,7 @@ export default function NavigatioBar({activePage, handleChangePage}) {
       <div className="right-flex">
         
         {user ? 
-          <a href={`/profile/${user.userId}`}>
+          <a href={`/profile/${user._id}`}>
             <AvatarButton 
                 icon 
                 labelPosition="left" 

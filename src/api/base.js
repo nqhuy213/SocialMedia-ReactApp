@@ -12,6 +12,7 @@ export const callAPI = async (
   params,
   options = { headers: {Accept: 'application/json', 'Content-Type': 'application/json'}}
 ) => {
+  console.log(`${BASE_URL}`);
   const token = getToken('token');
   const sent_options = {
     ...options,
