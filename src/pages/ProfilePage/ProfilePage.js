@@ -3,9 +3,10 @@ import { useParams } from 'react-router';
 import ProfilePicture from './components/ProfilePicture';
 import styled from 'styled-components'
 import CoverPhoto from './components/CoverPhoto';
-import { getProfile } from '../../api/profile';
+import { editProfileImage, getProfile } from '../../api/profile';
 import { Modal } from 'semantic-ui-react';
 import ProfileImageForm from './components/ProfileImageForm';
+import { uploadImage } from '../../api/upload';
 
 
 
@@ -63,7 +64,6 @@ export default function ProfilePage() {
 
   const fetchProfile = async (userId) => {
     const res = await getProfile(userId)
-    console.log(res);
     setCurrentUser(res.data.user)
     setAuth(res.data.auth)
   } 
@@ -73,31 +73,39 @@ export default function ProfilePage() {
 
   },[setAuth, setCurrentUser])
 
-  const handleProfileImageChosen = (e) => {
-    const reader = new FileReader()
-    if(e.target.files[0]){
-      setProfileImageFile(e.target.files[0])
-      reader.readAsDataURL(e.target.files[0])
-      reader.onloadend = () => {
-        setProfileImageURL(reader.result)
+  const handleProfileImageChosen = (file) => {
+    setProfileImageFile(file)
+  }
+
+  const handleSubmitProfileImage = async (e) => {
+    /**Upload image first */
+    var imageURL
+    if(profileImageFile){
+      var formData = new FormData
+      formData.append('image', profileImageFile)
+      const res = await uploadImage(formData)
+      if(res.success){
+        imageURL = `${process.env.REACT_APP_API_URL}/${res.data.image.filename}`
       }
     }
-    e.target.value = null
+    const res = await editProfileImage(currentUser._id, {imageURL})
+    window.location.reload(0)
   }
 
   const handleCoverImageChosen = (e) => {
 
   }
+
   return (
     <div className='page-container profile-page'>
       <ProfilePageHeader>
         <HeaderImagesContainer>
           <CoverPhotoContainer>
-            <CoverPhoto auth={auth} src='https://www.talkwalker.com/images/2020/blog-headers/image-analysis.png'/>
+            <CoverPhoto auth={auth} src={currentUser ? currentUser.coverImageURL : ''}/>
           </CoverPhotoContainer>
           <ProfilePictureContainer>
             <ProfilePicture auth={auth} 
-                            src='https://www.talkwalker.com/images/2020/blog-headers/image-analysis.png'
+                            src={currentUser ? currentUser.profileImageURL : ''}
                             handleProfileImageChosen={handleProfileImageChosen}
                             openProfileImageForm = {() => setProfileImageForm(true)}
                             
@@ -118,7 +126,12 @@ export default function ProfilePage() {
         open={profileImageForm}
         onClose={() => setProfileImageForm(false)}
       >
-        <ProfileImageForm closeProfileImageForm = {() => setProfileImageForm(false)}/>
+        <ProfileImageForm 
+          closeProfileImageForm = {() => setProfileImageForm(false)}
+          handleImageChosen = {handleProfileImageChosen}
+          src={currentUser ? currentUser.profileImageURL : ''}     
+          handleSubmitImage={handleSubmitProfileImage}
+        />
       </Modal>
     </div>
   )

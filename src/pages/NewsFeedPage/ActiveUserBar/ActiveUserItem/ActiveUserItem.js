@@ -9,7 +9,9 @@ export default function ActiveUserItem({user, onClick}) {
   
   return (
     <GrayHoverContainer onClick={() => {onClick(user)}}>
-      <AvatarContainer disable online name={`${user.firstName} ${user.lastName}`}/>
+      <AvatarContainer disable online
+        name={`${user.firstName} ${user.lastName}`} 
+        src={user.profileImageURL}/>
     </GrayHoverContainer>
   )
 }

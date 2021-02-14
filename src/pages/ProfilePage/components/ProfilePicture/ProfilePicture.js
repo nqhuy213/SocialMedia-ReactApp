@@ -2,6 +2,7 @@ import React, { Fragment, useRef } from "react";
 import PropTypes from "prop-types";
 import { Button, Icon, Image } from "semantic-ui-react";
 import styled from "styled-components";
+import AvatarContainer from "../../../../components/AvatarContainer/AvatarContainer";
 
 const ProfileImageWrapper = styled.div`
   display: flex;
@@ -35,7 +36,7 @@ export default function ProfilePicture(props) {
   const imageInputRef = useRef(null)
 
   const handleImageChange = (e) => {
-    props.handleProfileImageChosen()
+    props.handleImageChosen()
   }
 
   const clickImageInput = (e) => {
@@ -56,7 +57,6 @@ export default function ProfilePicture(props) {
           <EditProfileImageButton circular icon onClick={props.openProfileImageForm}>
             <Icon name="camera" />
           </EditProfileImageButton> 
-          <ProfileImageInput type='file' name='img' id='img' accept='image/*' ref={imageInputRef} onChange={handleImageChange}/>
         </> 
           : null
 

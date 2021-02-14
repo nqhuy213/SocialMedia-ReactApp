@@ -19,5 +19,5 @@ export default function SaveButton({onClick}) {
 }
 
 SaveButton.propTypes = {
-  onClick: PropTypes.bool,
+  onClick: PropTypes.func,
 }

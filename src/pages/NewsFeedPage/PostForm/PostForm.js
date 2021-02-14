@@ -108,6 +108,7 @@ export default function PostForm({closePostForm, user}) {
       <AvatarContainer
         src="https://react.semantic-ui.com/images/wireframe/square-image.png"
         name={`${user.firstName} ${user.lastName}`}
+        userId={user._id}
       />
       <Form onSubmit={handleOnSubmit}>
         <ShrinkTextArea

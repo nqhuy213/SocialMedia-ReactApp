@@ -133,6 +133,7 @@ export default function ChatBox(props) {
             size="mini"
             name={`${props.guest.firstName} ${props.guest.lastName}`}
             userId={props.guest._id}
+            src={props.guest.profileImageURL}
           />
         </GrayHoverContainer>
         <CustomCloseButton

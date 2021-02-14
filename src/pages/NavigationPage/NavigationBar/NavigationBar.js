@@ -9,6 +9,7 @@ import AccountPanel from '../Panels/AccountPanel/AccountPanel';
 import {useSelector} from 'react-redux'
 import styled from 'styled-components'
 import AvatarContainer from '../../../components/AvatarContainer/AvatarContainer';
+import { Link } from 'react-router-dom';
 
 const AvatarButton = styled.div`
   position: relative !important;
@@ -28,7 +29,7 @@ const AvatarButton = styled.div`
   color: ${props => props.selected ? props.theme.colors.primaryblue : 'black'}
 `
 
-export default function NavigatioBar({activePage, handleChangePage}) {
+export default function NavigatioBar({activePage}) {
   const user = useSelector((state) => state.Auth.user)
 
 
@@ -39,21 +40,21 @@ export default function NavigatioBar({activePage, handleChangePage}) {
         <Search className="navbar-item search-box" />
       </div>
       <div className="middle-flex tabbar">
-        <TabBar activePage={activePage} handleChangePage={handleChangePage} />
+        <TabBar activePage={activePage} />
       </div>
       <div className="right-flex">
         
         {user ? 
-          <a href={`/profile/${user._id}`}>
+          <Link to={`/profile/${user._id}`}>
             <AvatarButton 
                 icon 
                 labelPosition="left" 
                 circular 
                 selected={activePage === 'profile'}>
-                <Image src={"https://react.semantic-ui.com/images/wireframe/square-image.png"} avatar/>
+                <Image src={user.profileImageURL} avatar/>
                 {user.firstName} 
               </AvatarButton>
-          </a>
+          </Link>
           :
           null
         }

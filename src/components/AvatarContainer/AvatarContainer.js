@@ -21,6 +21,36 @@ const AContainer = styled.div`
   position: relative;
 `;
 
+const AImage = styled(Image)`
+  width: ${(props) => {
+    var px = 40
+    var scale
+    switch(props.size){
+      case 'tiny':
+        scale = 1
+      case 'small':
+        scale = 3
+      default:
+        scale = 1
+    }
+    return `${px*scale}px`
+  }} !important;
+
+  height: ${(props) => {
+    var px = 40
+    var scale
+    switch(props.size){
+      case 'tiny':
+        scale = 1
+      case 'small':
+        scale = 3
+      default:
+        scale = 1
+    }
+    return `${px*scale}px`
+  }} !important;
+`
+
 export default function AvatarContainer({
   src,
   name,
@@ -35,16 +65,14 @@ export default function AvatarContainer({
     <ALink to={`/profile/${userId}`} onClick={(e) => {disable && e.preventDefault()}}>
       <AContainer>
         <div className="avatar-img-container">
-          <Image
+          <AImage
             src={
               src
                 ? src
                 : "https://react.semantic-ui.com/images/wireframe/square-image.png"
             }
-            className="avatar-img"
             size={size}
             circular
-            avatar={isAvatar}
           />
         </div>
         {online ? <span className="online-indicator"></span> : null}
