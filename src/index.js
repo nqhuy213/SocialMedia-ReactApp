@@ -15,7 +15,7 @@ import theme from './styles/theme';
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL} history={history}>
+    <BrowserRouter history={history}>
         <App/>
     </BrowserRouter>
   </Provider>,
